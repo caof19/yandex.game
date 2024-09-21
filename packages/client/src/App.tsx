@@ -1,5 +1,8 @@
 import { useEffect } from "react";
+import { Router } from "react-router-dom";
 import "./App.css";
+import { history } from "./service";
+import { ConfigProvider, theme } from "antd";
 
 function App() {
     useEffect(() => {
@@ -12,7 +15,22 @@ function App() {
 
         fetchServerData();
     }, []);
-    return <div className="App">Вот тут будет жить ваше приложение :)</div>;
+
+    const isDark = Math.random() > 0.5;
+
+    return (
+        <Router history={history}>
+            <ConfigProvider
+                theme={{
+                    algorithm: isDark
+                        ? theme.darkAlgorithm
+                        : theme.compactAlgorithm,
+                }}
+            >
+                <div className="App">Вот тут будет жить ваше приложение :)</div>
+            </ConfigProvider>
+        </Router>
+    );
 }
 
 export default App;
