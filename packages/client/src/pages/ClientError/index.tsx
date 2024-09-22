@@ -1,5 +1,5 @@
 import React from "react";
 
-export const ClientError: React.FC<object> = () => {
+export const ClientError = (props: object) => {
     return <div>NotFound:</div>;
 };
