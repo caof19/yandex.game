@@ -23,7 +23,9 @@ export const InputRegexps = {
         message: "Введите правильный адрес электронной почты",
     },
     phone: {
-        regexp: new RegExp(/^(?=.*[a-zA-Z])([a-zA-Z0-9_-]{3,20})$/),
+        regexp: new RegExp(
+            /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/,
+        ),
         message: "Введите правильный номер телефона",
     },
 };
@@ -42,8 +44,17 @@ export function ProfileInfo({
     // TODO: useSelector(selectUser)
     const user = {} as User;
 
+    const [form] = Form.useForm();
+
+    const handleClickCancelEdit = () => {
+        form.resetFields();
+
+        onCancelEdit();
+    };
+
     return (
         <Form
+            form={form}
             initialValues={{
                 email: user?.email ?? "",
                 login: user?.login ?? "",
@@ -169,7 +180,7 @@ export function ProfileInfo({
                         <Button type="primary" htmlType="submit">
                             Сохранить
                         </Button>
-                        <Button danger onClick={onCancelEdit}>
+                        <Button danger onClick={handleClickCancelEdit}>
                             Отменить
                         </Button>
                     </Space>

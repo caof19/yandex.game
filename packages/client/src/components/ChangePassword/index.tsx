@@ -12,8 +12,17 @@ export function ChangePasswordForm({
     onSubmit,
     onCancel,
 }: ChangePasswordFormProps) {
+    const [form] = Form.useForm();
+
+    const handleClickCancel = () => {
+        form.resetFields();
+
+        onCancel();
+    };
+
     return (
         <Form
+            form={form}
             initialValues={{ oldPassword: "", newPassword: "" }}
             layout="vertical"
             onFinish={onSubmit}
@@ -23,10 +32,10 @@ export function ChangePasswordForm({
                 label="Старый пароль"
                 rules={[
                     { required: true, message: "Это поле обязательно" },
-                    // {
-                    //     pattern: InputRegexps.password.regexp,
-                    //     message: InputRegexps.password.message,
-                    // },
+                    {
+                        pattern: InputRegexps.password.regexp,
+                        message: InputRegexps.password.message,
+                    },
                 ]}
             >
                 <Input.Password
@@ -39,10 +48,10 @@ export function ChangePasswordForm({
                 label="Новый пароль"
                 rules={[
                     { required: true, message: "Это поле обязательно" },
-                    // {
-                    //     pattern: InputRegexps.password.regexp,
-                    //     message: InputRegexps.password.message,
-                    // },
+                    {
+                        pattern: InputRegexps.password.regexp,
+                        message: InputRegexps.password.message,
+                    },
                 ]}
             >
                 <Input.Password
@@ -55,7 +64,7 @@ export function ChangePasswordForm({
                     <Button type="primary" htmlType="submit">
                         Сохранить
                     </Button>
-                    <Button danger onClick={onCancel}>
+                    <Button danger onClick={handleClickCancel}>
                         Отменить
                     </Button>
                 </Space>
