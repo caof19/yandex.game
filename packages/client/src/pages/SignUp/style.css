@@ -1,0 +1,45 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.custom-form {
+    width: 600px;
+    padding: 20px;
+    padding-bottom: 0;
+    background-color: #f0f0f0; /* Светло-серый цвет формы */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Тень вокруг формы */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.custom-input {
+    background-color: #f0f0f0 !important;
+    padding: 6px 20px;
+    font-size: 20px;
+    color: #111111;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border-color: transparent;
+    border-bottom: 1px solid #000000;
+}
+
+.custom-input:hover {
+    background-color: #f0f0f0;
+}
+
+.custom-input:focus {
+    background-color: #f0f0f0;
+}
+
+.custom-input::placeholder {
+    color: #aaa;
+}
+
+.custom-input.ant-input-status-error {
+    color: #ff0000;
+}
