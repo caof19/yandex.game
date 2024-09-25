@@ -1,11 +1,11 @@
-.form-container {
+.form_container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.custom-form {
+.custom_form {
     width: 600px;
     padding: 20px;
     padding-bottom: 0;
@@ -16,7 +16,7 @@
     border-radius: 10px;
 }
 
-.custom-input {
+.custom_input {
     background-color: #f0f0f0 !important;
     padding: 6px 20px;
     font-size: 20px;
@@ -28,18 +28,18 @@
     border-bottom: 1px solid #000000;
 }
 
-.custom-input:hover {
+.custom_input:hover {
     background-color: #f0f0f0;
 }
 
-.custom-input:focus {
+.custom_input:focus {
     background-color: #f0f0f0;
 }
 
-.custom-input::placeholder {
+.custom_input::placeholder {
     color: #aaa;
 }
 
-.custom-input.ant-input-status-error {
+.custom_input.ant-input-status-error {
     color: #ff0000;
 }
