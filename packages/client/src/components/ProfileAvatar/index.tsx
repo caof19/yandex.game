@@ -5,7 +5,7 @@ import { Avatar, Empty, Skeleton } from "antd";
 import { useEffect, useState } from "react";
 
 export function ProfileAvatar() {
-    // useSelector(selectUser)
+    // TODO: Использовать selector для получения пользователя
     const user = {} as User;
 
     const [error, setError] = useState(false);

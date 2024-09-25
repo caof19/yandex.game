@@ -2,11 +2,11 @@ import { ChangePasswordArgs } from "@/service/api/user";
 import { Button, Form, Input, Space } from "antd";
 import { InputRegexps } from "../ProfileInfo";
 
-interface ChangePasswordFormProps {
+type ChangePasswordFormProps = {
     // TODO: Удалить any
     onSubmit: (data: any) => void;
     onCancel: VoidFunction;
-}
+};
 
 export function ChangePasswordForm({
     onSubmit,

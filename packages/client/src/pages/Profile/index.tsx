@@ -7,13 +7,9 @@ import {
     changeProfile,
 } from "@/service/api/user";
 import { Button, Flex, Upload, message } from "antd";
-import {
-    RcFile,
-    UploadChangeParam,
-    UploadFile,
-    UploadProps,
-} from "antd/es/upload";
+import { RcFile } from "antd/es/upload";
 import { useState } from "react";
+import styles from "./style.module.css";
 
 const beforeUpload = (file: RcFile) => {
     const isJpgOrPng =
@@ -39,26 +35,15 @@ export function Profile() {
     const [isChangePassword, setIsChangePassword] = useState(false);
 
     const onSubmitChangePasswordForm = async (data: ChangePasswordArgs) => {
-        const response = await changePassword(data);
-        console.log(response, "response");
+        await changePassword(data);
     };
 
     const onSubmitChangeProfileForm = async (data: ChangeProfileArgs) => {
-        const response = await changeProfile(data);
-        console.log(response);
+        await changeProfile(data);
     };
 
     return (
-        <Flex
-            gap="middle"
-            vertical
-            style={{
-                maxWidth: 720,
-                width: "100%",
-                margin: "0 auto",
-                padding: 20,
-            }}
-        >
+        <Flex gap="middle" vertical className={styles.container}>
             <Flex justify="center">
                 <ProfileAvatar />
             </Flex>
@@ -78,7 +63,7 @@ export function Profile() {
                     />
                 )}
             </Flex>
-            {!isChangePassword && !isEdit ? (
+            {!isChangePassword && !isEdit && (
                 <Flex vertical gap="middle">
                     <Button onClick={() => setIsEdit(true)}>
                         Редактировать
@@ -96,7 +81,7 @@ export function Profile() {
                         <Button>Изменить аватар</Button>
                     </Upload>
                 </Flex>
-            ) : null}
+            )}
         </Flex>
     );
 }

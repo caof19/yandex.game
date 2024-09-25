@@ -30,18 +30,18 @@ export const InputRegexps = {
     },
 };
 
-interface ProfileInfoProps {
+type ProfileInfoProps = {
     isEdit: boolean;
     onSubmit: (data: any) => void;
     onCancelEdit: VoidFunction;
-}
+};
 
 export function ProfileInfo({
     isEdit,
     onSubmit,
     onCancelEdit,
 }: ProfileInfoProps) {
-    // TODO: useSelector(selectUser)
+    // TODO: Использовать selector для получения пользователя
     const user = {} as User;
 
     const [form] = Form.useForm();
