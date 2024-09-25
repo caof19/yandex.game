@@ -1,8 +1,11 @@
+import { Button } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 
 const CELL_SIZE = 40; // Размер одной ячейки
 const ROWS = 12; // Количество строк
 const COLS = 12; // Количество столбцов
+const playerStart = [ROWS - 1, 0];
+const compStart = [0, COLS - 1];
 const COLORS = [
     "#FF6347",
     "#4682B4",
@@ -36,9 +39,9 @@ const generateGrid = (): ColoredCell[][] => {
                 col,
                 color: getRandomColor(),
                 owner:
-                    row === ROWS - 1 && col === 0
+                    row === playerStart[0] && playerStart[1]
                         ? "player"
-                        : row === 0 && col === COLS - 1
+                        : row === compStart[0] && col === compStart[1]
                         ? "comp"
                         : "none",
             });
@@ -61,12 +64,12 @@ const FillerGame = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [grid, setGrid] = useState<ColoredCell[][]>(generateGrid);
     const [currentColor, setCurrentColor] = useState<string>(
-        grid[ROWS - 1][0].color,
-    ); // Нижний левый угол
+        grid[playerStart[0]][playerStart[1]].color,
+    );
     const [computerColor, setComputerColor] = useState<string>(
-        grid[0][COLS - 1].color,
-    ); // Для компьютера верхний правый угол
-    const [isPlayerTurn, setIsPlayerTurn] = useState(true); // Текущий ход (true - ход игрока, false - компьютер)
+        grid[compStart[0]][compStart[1]].color,
+    );
+    const [isPlayerTurn, setIsPlayerTurn] = useState(true);
     const [playerCells, setPlayerCells] = useState(1);
     const [computerCells, setComputerCells] = useState(1);
 
@@ -144,18 +147,48 @@ const FillerGame = () => {
             const items = curr.filter(
                 (x) => x.owner == (isPlayer ? "player" : "comp"),
             ).length;
-            console.log(curr, items, acc);
             return acc + items;
         }, 0);
     };
 
     const countCapturedCells = (
-        color: string,
         row: number,
         col: number,
+        targetColor: string,
+        replacementColor: string,
     ): number => {
-        // TODO: подсчет захватываемых ячеек
-        return 0;
+        let count = 0;
+        const visited = new Set<string>(); // Множество для отслеживания посещённых клеток
+        const fillQueue: Cell[] = [{ row, col, owner: "none" }];
+
+        while (fillQueue.length > 0) {
+            const { row, col } = fillQueue.pop()!;
+            const key = `${row},${col}`; // Уникальный ключ для клетки (координаты)
+
+            // Пропускаем клетку, если она уже была посещена
+            if (visited.has(key)) continue;
+            visited.add(key);
+
+            // Если цвет клетки совпадает с целевым или новым цветом, увеличиваем счётчик
+            if (
+                isSameColor(grid, row, col, targetColor) ||
+                isSameColor(grid, row, col, replacementColor)
+            ) {
+                count++;
+
+                // Добавляем соседние клетки в очередь, если они ещё не посещены
+                if (row > 0)
+                    fillQueue.push({ row: row - 1, col, owner: "none" });
+                if (row < ROWS - 1)
+                    fillQueue.push({ row: row + 1, col, owner: "none" });
+                if (col > 0)
+                    fillQueue.push({ row, col: col - 1, owner: "none" });
+                if (col < COLS - 1)
+                    fillQueue.push({ row, col: col + 1, owner: "none" });
+            }
+        }
+
+        return count; // Возвращаем количество захваченных клеток
     };
 
     // Ход компьютера
@@ -164,17 +197,20 @@ const FillerGame = () => {
             (color) => color !== computerColor && color !== currentColor,
         );
 
-        let bestColor = computerColor;
-        let maxCapturedCells = 0;
-
-        // TODO: выбор лучшего цвета для хода компьютера
+        const colors: { [key: string]: number } = {};
         for (const color of availableColors) {
-            const potentialCaptured = countCapturedCells(color, 0, COLS - 1);
-            if (potentialCaptured > maxCapturedCells) {
-                maxCapturedCells = potentialCaptured;
-                bestColor = color;
-            }
+            const potentialCaptured = countCapturedCells(
+                0,
+                COLS - 1,
+                computerColor,
+                color,
+            );
+            colors[color] = potentialCaptured;
         }
+
+        const bestColor = Object.entries(colors).sort((a, b) =>
+            a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0,
+        )[0][0];
 
         const newlyCapturedCells = floodFill(
             0,
@@ -225,7 +261,7 @@ const FillerGame = () => {
                 {COLORS.map(
                     (color) =>
                         color !== computerColor && (
-                            <button
+                            <Button
                                 key={color}
                                 onClick={() => handleColorChange(color)}
                                 style={{
@@ -234,15 +270,14 @@ const FillerGame = () => {
                                     height: "50px",
                                     marginRight: "10px",
                                     border: "none",
-                                    cursor: "pointer",
+                                    cursor: isPlayerTurn ? "pointer" : "auto",
                                 }}
                                 disabled={!isPlayerTurn}
                             />
                         ),
                 )}
             </div>
-
-            <div style={{ marginTop: "20px" }}>
+            <div>
                 <p>Захваченные ячейки игрока: {playerCells}</p>
                 <p>Захваченные ячейки компьютера: {computerCells}</p>
             </div>
