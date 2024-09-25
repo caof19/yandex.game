@@ -1,11 +1,11 @@
-.form-container {
+.form_container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.custom-form {
+.custom_form {
     width: 600px;
     padding: 20px;
     padding-bottom: 0;
@@ -16,7 +16,7 @@
     border-radius: 10px;
 }
 
-.custom-input {
+.custom_input {
     background-color: #f0f0f0 !important;
     padding: 6px 20px;
     font-size: 20px;
@@ -43,7 +43,7 @@
 .custom-input.ant-input-status-error {
     color: #ff0000;
 }
-.custom-button {
+.custom_button {
     display: block;
     margin-left: auto;
     margin-right: auto;
