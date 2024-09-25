@@ -45,9 +45,6 @@ export const SingIn: React.FC = () => {
                 message.error({
                     content: errText,
                     duration: 3, // Время исчезновения через 3 секунды
-                    style: {
-                        color: "#ff4d4f", // Красный цвет текста
-                    },
                 });
             });
     };
