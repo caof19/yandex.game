@@ -52,22 +52,32 @@ export const SingIn: React.FC = () => {
     return (
         <div className={style.form_container}>
             <Form className={style.custom_form} onFinish={handleFinish}>
-                {userFields.map((field) => (
-                    <Form.Item
-                        key={field.name}
-                        name={field.name}
-                        rules={[
-                            { required: true, message: "Это поле обязательно" },
-                        ]}
-                    >
-                        <Input
-                            type={field.type}
-                            placeholder={field.placeholder}
-                            className={style.custom_input}
-                        />
-                    </Form.Item>
-                ))}
-
+                <Form.Item
+                    key="login"
+                    name="login"
+                    rules={[
+                        { required: true, message: "Это поле обязательно" },
+                    ]}
+                >
+                    <Input
+                        type="text"
+                        placeholder="Введите ваш логин"
+                        className={style.custom_input}
+                    />
+                </Form.Item>
+                <Form.Item
+                    key="password"
+                    name="password"
+                    rules={[
+                        { required: true, message: "Это поле обязательно" },
+                    ]}
+                >
+                    <Input
+                        type="password"
+                        placeholder="Введите пароль"
+                        className={style.custom_input}
+                    />
+                </Form.Item>
                 <Form.Item>
                     <Button
                         type="primary"
