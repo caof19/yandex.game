@@ -12,11 +12,10 @@ import { CommentForm } from "../../Components/CommentForm";
 
 export const Topic: React.FC = () => {
     const params: { id: string } = useParams();
-    const [isAuthorized, setAuthorized] = useState(false);
+    const isAuthenticated = false;
     const [comments, setComments] = useState<Array<TComment> | undefined>();
     const [topic, setTopic] = useState<TTopic | undefined>();
     useEffect(() => {
-        setAuthorized(Math.random() > 0.5);
         setTopic(testTopics.find((data) => data.id === Number(params.id)));
         setComments(testComments);
     }, []);
@@ -46,7 +45,7 @@ export const Topic: React.FC = () => {
                             <Typography.Title>PeachesFiller</Typography.Title>
                         </Space>
                         <Space align="center">
-                            {isAuthorized ? (
+                            {isAuthenticated ? (
                                 <Link
                                     to={relativeRoutes.profile.path}
                                     component={Typography.Link}

@@ -10,15 +10,12 @@ import styles from "./styles.module.css";
 
 export const Forum: React.FC<object> = () => {
     const [topics, setTopics] = useState<TTopic[] | undefined>();
-
+    const isAuthenticated = false;
     const navLinkStyle: React.CSSProperties = {
         color: "#ffc53d",
         fontSize: "16px",
     };
-    const [isAuthorized, setAuthorized] = useState(false);
     useEffect(() => {
-        //проверка авторизации
-        setAuthorized(Math.random() > 0.5);
         setTopics(testData);
     }, []);
     return (
@@ -44,7 +41,7 @@ export const Forum: React.FC<object> = () => {
                             <Title>PeachesFiller</Title>
                         </Space>
                         <Space align="center">
-                            {isAuthorized ? (
+                            {isAuthenticated ? (
                                 <Link
                                     to={relativeRoutes.profile.path}
                                     component={Typography.Link}

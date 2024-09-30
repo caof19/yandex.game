@@ -19,7 +19,11 @@ export const Routes = () => {
             <Route path={routes.leaderBoard.path} component={LeaderBoard} />
             <Route path={routes.signIn.path} component={SingIn} />
             <Route path={routes.singUp.path} component={SingUp} />
-            <Route path={routes.topic.path} component={Topic} />
+            <Route path={routes.topic.path}>
+                <AuthGuard>
+                    <Topic />
+                </AuthGuard>
+            </Route>
             <Route path={routes.forum.path}>
                 <AuthGuard>
                     <Forum />
