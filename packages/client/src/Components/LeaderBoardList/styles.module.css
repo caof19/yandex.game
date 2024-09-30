@@ -1,0 +1,10 @@
+.leaderboard-row {
+    display: flex;
+    font-size: 24px;
+    gap: 8px;
+}
+.leaderboard-row-inner {
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}

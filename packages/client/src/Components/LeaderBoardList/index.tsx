@@ -1,12 +1,7 @@
-// 1. Добавить роут для лидерборда.
-// 2. Сверстать страницу лидерборда.
-// Добавлен роут для лидерборда, при переходе авторизованного пользователя на этот экран отображается список моковых рекордов.
-// Лидерборд представляет собой список рекордов пользователей вашей игры.
-
-import React from "react";
 import { Flex, List, Space, Typography } from "antd";
-
+import styles from "./styles.module.css";
 type TLeaderBoardItem = {
+    id: number;
     position: number;
     username: string;
     score: number;
@@ -17,40 +12,28 @@ type TLeaderBoardItemProps = {
 type TLeaderBoardListProps = {
     list: TLeaderBoardItem[];
 };
-const LeaderBoardItem: React.FC<TLeaderBoardItemProps> = (props) => {
-    const { Text } = Typography;
-    const { Item } = List;
+const LeaderBoardItem = (props: TLeaderBoardItemProps) => {
     return (
-        <Item
-            style={{
-                display: "flex",
-                fontSize: "24px",
-                gap: "8px",
-            }}
-        >
-            <Flex
-                gap={16}
-                style={{
-                    justifyContent: "space-between",
-                    width: "100%",
-                    alignItems: "center",
-                }}
-            >
+        <List.Item className={styles["leaderboard-row"]}>
+            <Flex gap={16} className={styles["leaderboard-row-inner"]}>
                 <Space align="center">
-                    <Text>{props.item.position}</Text>
-                    <Text>{props.item.username}</Text>
+                    <Typography.Text>{props.item.position}</Typography.Text>
+                    <Typography.Text>{props.item.username}</Typography.Text>
                 </Space>
-                <Text>{props.item.score}</Text>
+                <Typography.Text>{props.item.score}</Typography.Text>
             </Flex>
-        </Item>
+        </List.Item>
     );
 };
 
-export const LeaderBoardList: React.FC<TLeaderBoardListProps> = (props) => {
+export const LeaderBoardList = (props: TLeaderBoardListProps) => {
     return (
         <List>
-            {props.list.map((item: TLeaderBoardItem) => (
-                <LeaderBoardItem item={item} />
+            {props.list.map((leaderboardItem: TLeaderBoardItem) => (
+                <LeaderBoardItem
+                    item={leaderboardItem}
+                    key={leaderboardItem.id}
+                />
             ))}
         </List>
     );

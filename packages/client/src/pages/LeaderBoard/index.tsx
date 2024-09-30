@@ -6,48 +6,21 @@ import { Link } from "react-router-dom";
 import { relativeRoutes } from "../../service/routes/routeMap";
 import { LeaderBoardList } from "../../Components/LeaderBoardList";
 import { leaderBoardData } from "./leaderboardData";
+import styles from "./styles.module.css";
 
-export const LeaderBoard: React.FC<object> = () => {
-    const navLinkStyle: React.CSSProperties = {
-        color: "#ffc53d",
-        fontSize: "16px",
-    };
-    const linkStyle: React.CSSProperties = {
-        padding: "8px 16px",
-        borderRadius: "16px",
-        backgroundColor: "#ffc53d",
-        color: "#000",
-        fontSize: "16px",
-        alignSelf: "center",
-    };
+export const LeaderBoard = () => {
     const [isAuthorized, setAuthorized] = useState(false);
     useEffect(() => {
         //проверка авторизации
         setAuthorized(Math.random() > 0.5);
     }, []);
     return (
-        <Layout style={{ height: "100vh" }}>
-            <Flex
-                gap={32}
-                vertical
-                style={{
-                    margin: "0 auto",
-                    maxWidth: "1024px",
-                    width: "100%",
-                }}
-            >
-                <Flex style={{ flexDirection: "column" }} align="center">
-                    <Space
-                        style={{
-                            justifyContent: "space-between",
-                            width: "100%",
-                        }}
-                    >
+        <Layout className={styles.page}>
+            <Flex gap={32} vertical className={styles.container}>
+                <Flex vertical align="center">
+                    <Space className={styles.header}>
                         <Space align="center">
-                            <img
-                                src={peachIcon}
-                                style={{ width: "42px", height: "42px" }}
-                            />
+                            <img className={styles.logo} src={peachIcon} />
                             <Title>PeachesFiller</Title>
                         </Space>
                         <Space align="center">
@@ -55,7 +28,7 @@ export const LeaderBoard: React.FC<object> = () => {
                                 <Link
                                     to={relativeRoutes.profile.path}
                                     component={Typography.Link}
-                                    style={navLinkStyle}
+                                    className={styles["nav-link"]}
                                 >
                                     Профиль
                                 </Link>
@@ -64,14 +37,14 @@ export const LeaderBoard: React.FC<object> = () => {
                                     <Link
                                         to={relativeRoutes.singUp.path}
                                         component={Typography.Link}
-                                        style={navLinkStyle}
+                                        className={styles["nav-link"]}
                                     >
                                         Регистрация
                                     </Link>
                                     <Link
                                         to={relativeRoutes.signIn.path}
                                         component={Typography.Link}
-                                        style={navLinkStyle}
+                                        className={styles["nav-link"]}
                                     >
                                         Вход
                                     </Link>
@@ -79,16 +52,14 @@ export const LeaderBoard: React.FC<object> = () => {
                             )}
                         </Space>
                     </Space>
-                    <Divider style={{ fontSize: "24px" }}>
-                        Список лидеров
-                    </Divider>
+                    <Divider className={styles.divider}>Список лидеров</Divider>
                     <Space>
                         <LeaderBoardList list={leaderBoardData} />
                     </Space>
                 </Flex>
                 <Link
                     to={relativeRoutes.game.path}
-                    style={linkStyle}
+                    className={styles["link"]}
                     component={Typography.Link}
                 >
                     Играть
