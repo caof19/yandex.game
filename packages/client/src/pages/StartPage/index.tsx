@@ -16,20 +16,11 @@ import peachIcon from "../../assets/svg/peach.svg";
 import { data } from "./data";
 import { Link } from "react-router-dom";
 import { relativeRoutes } from "../../service/routes/routeMap";
+import styles from "./styles.module.css";
 
-export const StartPage: React.FC<object> = () => {
+export const StartPage = () => {
     const { Text } = Typography;
-    const linkStyle: React.CSSProperties = {
-        padding: "8px 16px",
-        borderRadius: "16px",
-        backgroundColor: "#ffc53d",
-        color: "#000",
-        fontSize: "16px",
-    };
-    const navLinkStyle: React.CSSProperties = {
-        color: "#ffc53d",
-        fontSize: "16px",
-    };
+
     const [isAuthorized, setAuthorized] = useState(false);
     useEffect(() => {
         //проверка авторизации
@@ -37,24 +28,11 @@ export const StartPage: React.FC<object> = () => {
     }, []);
     return (
         <Layout>
-            <Flex
-                style={{
-                    margin: "0 auto",
-                    maxWidth: "1024px",
-                }}
-            >
-                <Flex style={{ flexDirection: "column" }} align="center">
-                    <Space
-                        style={{
-                            justifyContent: "space-between",
-                            width: "100%",
-                        }}
-                    >
+            <Flex className={styles.container}>
+                <Flex align="center" vertical>
+                    <Space className={styles.header}>
                         <Space align="center">
-                            <img
-                                src={peachIcon}
-                                style={{ width: "42px", height: "42px" }}
-                            />
+                            <img className={styles.logo} src={peachIcon} />
                             <Title>PeachesFiller</Title>
                         </Space>
                         <Space align="center">
@@ -62,7 +40,7 @@ export const StartPage: React.FC<object> = () => {
                                 <Link
                                     to={relativeRoutes.profile.path}
                                     component={Typography.Link}
-                                    style={navLinkStyle}
+                                    className={styles["nav-link"]}
                                 >
                                     Профиль
                                 </Link>
@@ -71,14 +49,14 @@ export const StartPage: React.FC<object> = () => {
                                     <Link
                                         to={relativeRoutes.singUp.path}
                                         component={Typography.Link}
-                                        style={navLinkStyle}
+                                        className={styles["nav-link"]}
                                     >
                                         Регистрация
                                     </Link>
                                     <Link
                                         to={relativeRoutes.signIn.path}
                                         component={Typography.Link}
-                                        style={navLinkStyle}
+                                        className={styles["nav-link"]}
                                     >
                                         Вход
                                     </Link>
@@ -86,13 +64,11 @@ export const StartPage: React.FC<object> = () => {
                             )}
                         </Space>
                     </Space>
-                    <Divider style={{ fontSize: "24px" }}>
-                        Описание игры
-                    </Divider>
+                    <Divider className={styles.divider}>Описание игры</Divider>
                     <Flex gap={32}>
                         <Carousel
                             arrows
-                            style={{ width: "400px" }}
+                            className={styles.carousel}
                             autoplay
                             autoplaySpeed={4000}
                         >
@@ -115,9 +91,7 @@ export const StartPage: React.FC<object> = () => {
                         </Carousel>
                         <Text>{data.about}</Text>
                     </Flex>
-                    <Divider style={{ fontSize: "24px" }}>
-                        Список лидеров
-                    </Divider>
+                    <Divider className={styles.divider}>Список лидеров</Divider>
                     <Flex gap={32}>
                         <Space>
                             <Image
@@ -131,19 +105,19 @@ export const StartPage: React.FC<object> = () => {
                             <Text>{data.leaderboard}</Text>
                             <Link
                                 to={relativeRoutes.leaderBoard.path}
-                                style={linkStyle}
+                                className={styles.link}
                                 component={Typography.Link}
                             >
                                 Перейти
                             </Link>
                         </Flex>
                     </Flex>
-                    <Divider style={{ fontSize: "24px" }}>Форум</Divider>
+                    <Divider className={styles.divider}>Форум</Divider>
                     <Flex vertical align="center" justify="center" gap={32}>
                         <Text>{data.forum}</Text>
                         <Link
                             to={relativeRoutes.forum.path}
-                            style={linkStyle}
+                            className={styles.link}
                             component={Typography.Link}
                         >
                             Перейти

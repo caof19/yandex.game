@@ -1,0 +1,30 @@
+.container {
+    margin: 0 auto;
+    max-width: 1024px;
+}
+.header {
+    justify-content: space-between;
+    width: 100%;
+}
+.logo {
+    height: 42px;
+    width: 42px;
+}
+.nav-link {
+    color: #ffc53d !important;
+    font-size: 16px;
+}
+
+.divider {
+    font-size: 24px !important;
+}
+.carousel {
+    width: 400px;
+}
+.link {
+    padding: 8px 16px;
+    border-radius: 16px;
+    background-color: #ffc53d;
+    color: #000 !important;
+    font-size: 16px;
+}
