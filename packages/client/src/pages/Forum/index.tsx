@@ -11,33 +11,16 @@ import styles from "./styles.module.css";
 export const Forum: React.FC<object> = () => {
     const [topics, setTopics] = useState<TTopic[] | undefined>();
     const isAuthenticated = false;
-    const navLinkStyle: React.CSSProperties = {
-        color: "#ffc53d",
-        fontSize: "16px",
-    };
     useEffect(() => {
         setTopics(testData);
     }, []);
     return (
         <Layout className={styles.page}>
-            <Flex
-                style={{
-                    margin: "0 auto",
-                    maxWidth: "1024px",
-                }}
-            >
-                <Flex style={{ flexDirection: "column" }} align="center">
-                    <Space
-                        style={{
-                            justifyContent: "space-between",
-                            width: "100%",
-                        }}
-                    >
+            <Space className={styles.container}>
+                <Flex vertical align="center" className={styles.content}>
+                    <Flex className={styles.header}>
                         <Space align="center">
-                            <img
-                                src={peachIcon}
-                                style={{ width: "42px", height: "42px" }}
-                            />
+                            <img src={peachIcon} className={styles.logo} />
                             <Title>PeachesFiller</Title>
                         </Space>
                         <Space align="center">
@@ -45,7 +28,7 @@ export const Forum: React.FC<object> = () => {
                                 <Link
                                     to={relativeRoutes.profile.path}
                                     component={Typography.Link}
-                                    style={navLinkStyle}
+                                    className={styles.link}
                                 >
                                     Профиль
                                 </Link>
@@ -53,34 +36,34 @@ export const Forum: React.FC<object> = () => {
                                 <>
                                     <Link
                                         to={relativeRoutes.singUp.path}
+                                        className={styles.link}
                                         component={Typography.Link}
-                                        style={navLinkStyle}
                                     >
                                         Регистрация
                                     </Link>
                                     <Link
                                         to={relativeRoutes.signIn.path}
+                                        className={styles.link}
                                         component={Typography.Link}
-                                        style={navLinkStyle}
                                     >
                                         Вход
                                     </Link>
                                 </>
                             )}
                         </Space>
-                    </Space>
+                    </Flex>
                     <Space direction="vertical">
                         <Divider>
                             <Typography.Title level={2}>
                                 <h2>Форум</h2>
                             </Typography.Title>
                         </Divider>
-                        <Space direction="vertical">
+                        <Flex justify="center">
                             {topics && <Topics topics={topics} />}
-                        </Space>
+                        </Flex>
                     </Space>
                 </Flex>
-            </Flex>
+            </Space>
         </Layout>
     );
 };
