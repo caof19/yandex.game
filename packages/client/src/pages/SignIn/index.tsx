@@ -5,22 +5,9 @@ import style from "./SignIn.module.css";
 import axios from "axios";
 import Auth from "../../service/user/Auth";
 
-const userFields = [
-    {
-        name: "login",
-        placeholder: "Введите ваш логин",
-        type: "text",
-    },
-    {
-        name: "password",
-        placeholder: "Введите пароль",
-        type: "password",
-    },
-];
-
 const YANDEX_API_URL = "https://ya-praktikum.tech/api/v2";
 
-export const SingIn: React.FC = () => {
+export const SingIn = () => {
     const history = useHistory();
 
     const handleFinish = (val) => {
