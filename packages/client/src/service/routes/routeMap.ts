@@ -15,7 +15,7 @@ export const relativeRoutes = {
         path: "/play",
     },
     profile: {
-        path: "/me",
+        path: "/profile",
     },
     auth: {
         path: "/auth",
