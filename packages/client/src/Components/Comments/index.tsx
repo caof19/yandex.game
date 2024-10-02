@@ -1,4 +1,3 @@
-import React from "react";
 import { convertDate } from "../../utils/converDate";
 import styles from "./styles.module.css";
 import { Card, Flex, List, Typography } from "antd";
@@ -15,17 +14,14 @@ export type TCommentProps = {
     comment: TComment;
 };
 
-export const Comment: React.FC<TCommentProps> = (props) => {
+export const Comment = ({ comment }: TCommentProps) => {
     return (
         <List.Item>
-            <Card
-                title={props.comment.author}
-                className={styles["comment-card"]}
-            >
+            <Card title={comment.author} className={styles["comment-card"]}>
                 <Flex justify="space-between">
-                    <Typography.Text>{props.comment.text}</Typography.Text>
+                    <Typography.Text>{comment.text}</Typography.Text>
                     <Typography.Text>
-                        {convertDate(props.comment.date)}
+                        {convertDate(comment.date)}
                     </Typography.Text>
                 </Flex>
             </Card>
@@ -33,10 +29,10 @@ export const Comment: React.FC<TCommentProps> = (props) => {
     );
 };
 
-export const Comments: React.FC<TCommentsProps> = (props) => {
+export const Comments = ({ comments }: TCommentsProps) => {
     return (
         <List>
-            {props.comments.map((comment, index) => (
+            {comments.map((comment, index) => (
                 <Comment comment={comment} key={index} />
             ))}
         </List>

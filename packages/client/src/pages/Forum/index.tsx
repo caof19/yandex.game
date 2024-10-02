@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Divider, Flex, Layout, Space, Typography } from "antd";
 import Title from "antd/es/typography/Title";
 import peachIcon from "../../assets/svg/peach.svg";
@@ -7,12 +7,15 @@ import { relativeRoutes } from "../../service/routes/routeMap";
 import { Topics, TTopic } from "../../Components/Topics";
 import { testData } from "./testData";
 import styles from "./styles.module.css";
+import { Loader } from "../../Components/Loader";
 
-export const Forum: React.FC<object> = () => {
+export const Forum = () => {
     const [topics, setTopics] = useState<TTopic[] | undefined>();
     const isAuthenticated = false;
     useEffect(() => {
-        setTopics(testData);
+        setTimeout(() => {
+            setTopics(testData);
+        }, 2000);
     }, []);
     return (
         <Layout className={styles.page}>
@@ -59,7 +62,7 @@ export const Forum: React.FC<object> = () => {
                             </Typography.Title>
                         </Divider>
                         <Flex justify="center">
-                            {topics && <Topics topics={topics} />}
+                            {topics ? <Topics topics={topics} /> : <Loader />}
                         </Flex>
                     </Space>
                 </Flex>

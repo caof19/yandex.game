@@ -17,6 +17,11 @@
     height: 42px;
     width: 42px;
 }
+
+a.link {
+    color: #ffc53d;
+    font-size: 16px;
+}
 .forum {
     width: 100%;
 }

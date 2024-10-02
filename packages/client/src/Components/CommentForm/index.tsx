@@ -1,6 +1,6 @@
 import { Button, Flex, Form } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export type TCommentFormField = {
     comment: string;
@@ -8,16 +8,17 @@ export type TCommentFormField = {
 export type TCommentFormProps = {
     onSubmit: (message: string) => void;
 };
-export const CommentForm: React.FC<TCommentFormProps> = (props) => {
-    const [message, setMessage] = useState<string>("");
+export const CommentForm = ({ onSubmit }: TCommentFormProps) => {
+    const [comment, setComment] = useState<string>("");
     const submitHandler = () => {
-        props.onSubmit(message);
+        onSubmit(comment);
+        setComment("");
     };
-    const changeHandler = (e: ChangeEvent) => {
-        setMessage((e.target as HTMLTextAreaElement).value);
+    const changeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setComment(e.target.value);
     };
     return (
-        <Form autoComplete="off" onFinish={submitHandler.bind(this)}>
+        <Form autoComplete="off" onFinish={submitHandler}>
             <Flex vertical>
                 <Form.Item<TCommentFormField>
                     name="comment"
@@ -31,7 +32,8 @@ export const CommentForm: React.FC<TCommentFormProps> = (props) => {
                 >
                     <TextArea
                         placeholder="Введите Ваш комменатрий"
-                        onChange={changeHandler.bind(this)}
+                        value={comment}
+                        onChange={changeHandler}
                     />
                 </Form.Item>
                 <Form.Item>

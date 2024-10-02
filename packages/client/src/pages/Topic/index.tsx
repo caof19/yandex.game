@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import peachIcon from "../../assets/svg/peach.svg";
 import { TTopic } from "../../Components/Topics";
 import { Link, useParams } from "react-router-dom";
@@ -9,15 +9,18 @@ import { testComments, testTopics } from "./testData";
 import { convertDate } from "../../utils/converDate";
 import { Comments, TComment } from "../../Components/Comments";
 import { CommentForm } from "../../Components/CommentForm";
+import { Loader } from "../../Components/Loader";
 
-export const Topic: React.FC = () => {
+export const Topic = () => {
     const params: { id: string } = useParams();
     const isAuthenticated = false;
     const [comments, setComments] = useState<Array<TComment> | undefined>();
     const [topic, setTopic] = useState<TTopic | undefined>();
     useEffect(() => {
-        setTopic(testTopics.find((data) => data.id === Number(params.id)));
-        setComments(testComments);
+        setTimeout(() => {
+            setTopic(testTopics.find((data) => data.id === Number(params.id)));
+            setComments(testComments);
+        }, 2000);
     }, []);
     const addCommentHandler = (comment: string) => {
         setComments((prevState) => {
@@ -49,6 +52,7 @@ export const Topic: React.FC = () => {
                                 <Link
                                     to={relativeRoutes.profile.path}
                                     component={Typography.Link}
+                                    className={styles.link}
                                 >
                                     Профиль
                                 </Link>
@@ -57,12 +61,14 @@ export const Topic: React.FC = () => {
                                     <Link
                                         to={relativeRoutes.singUp.path}
                                         component={Typography.Link}
+                                        className={styles.link}
                                     >
                                         Регистрация
                                     </Link>
                                     <Link
                                         to={relativeRoutes.signIn.path}
                                         component={Typography.Link}
+                                        className={styles.link}
                                     >
                                         Вход
                                     </Link>
@@ -70,32 +76,36 @@ export const Topic: React.FC = () => {
                             )}
                         </Space>
                     </Space>
-                    <Space direction="vertical" className={styles.forum}>
-                        <Card
-                            title={`Тема: ${topic?.title}`}
-                            className={styles["topic-info"]}
-                        >
-                            <Typography.Text>{topic?.message}</Typography.Text>
-                            <Divider />
-                            <Flex justify="space-between">
+                    {topic ? (
+                        <Space direction="vertical" className={styles.forum}>
+                            <Card
+                                title={`Тема: ${topic?.title}`}
+                                className={styles["topic-info"]}
+                            >
                                 <Typography.Text>
-                                    {`Автор: ${topic?.author}`}
+                                    {topic?.message}
                                 </Typography.Text>
-                                <Typography.Text>
-                                    {`Дата создания: ${convertDate(
-                                        topic?.createDate as string,
-                                    )}`}
-                                </Typography.Text>
-                            </Flex>
-                        </Card>
-                        <Divider>Комментарии</Divider>
-                        <Space direction="vertical">
-                            {comments && <Comments comments={comments} />}
-                            <CommentForm
-                                onSubmit={addCommentHandler.bind(this)}
-                            />
+                                <Divider />
+                                <Flex justify="space-between">
+                                    <Typography.Text>
+                                        {`Автор: ${topic?.author}`}
+                                    </Typography.Text>
+                                    <Typography.Text>
+                                        {`Дата создания: ${convertDate(
+                                            topic?.createDate as string,
+                                        )}`}
+                                    </Typography.Text>
+                                </Flex>
+                            </Card>
+                            <Divider>Комментарии</Divider>
+                            <Space direction="vertical">
+                                {comments && <Comments comments={comments} />}
+                                <CommentForm onSubmit={addCommentHandler} />
+                            </Space>
                         </Space>
-                    </Space>
+                    ) : (
+                        <Loader />
+                    )}
                 </Flex>
             </Flex>
         </Layout>
