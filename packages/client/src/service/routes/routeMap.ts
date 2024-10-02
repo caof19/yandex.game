@@ -28,6 +28,9 @@ export const relativeRoutes = {
         path: "/sign-up",
         parent: "auth",
     },
+    startPage: {
+        path: "/main",
+    },
 };
 
 type TRouteKeys = keyof typeof relativeRoutes;
