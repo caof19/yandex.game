@@ -14,18 +14,18 @@
     height: 42px;
     width: 42px;
 }
-.nav-link {
-    color: #ffc53d !important;
+a.nav-link {
+    color: #ffc53d;
     font-size: 16px;
 }
 .divider {
     font-size: 24px;
 }
-.link {
+a.link {
     padding: 8px 16px;
     border-radius: 16px;
     background-color: #ffc53d;
-    color: #000 !important;
+    color: #000;
     font-size: 16px;
     align-self: center;
 }

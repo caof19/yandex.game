@@ -29,7 +29,7 @@ const LeaderBoardItem = (props: TLeaderBoardItemProps) => {
 export const LeaderBoardList = (props: TLeaderBoardListProps) => {
     return (
         <List>
-            {props.list.map((leaderboardItem: TLeaderBoardItem) => (
+            {props.list.map((leaderboardItem) => (
                 <LeaderBoardItem
                     item={leaderboardItem}
                     key={leaderboardItem.id}
