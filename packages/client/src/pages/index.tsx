@@ -10,6 +10,7 @@ import { ServerError } from "./ServerError";
 import { ClientError } from "./ClientError";
 import { DefaultPage } from "./DefaultPage";
 import { StartPage } from "./StartPage";
+import { Topic } from "./Topic";
 
 export const Routes = () => {
     return (
@@ -20,6 +21,11 @@ export const Routes = () => {
             <Route path={routes.leaderBoard.path} component={LeaderBoard} />
             <Route path={routes.signIn.path} component={SingIn} />
             <Route path={routes.singUp.path} component={SingUp} />
+            <Route path={routes.topic.path}>
+                <AuthGuard>
+                    <Topic />
+                </AuthGuard>
+            </Route>
             <Route path={routes.forum.path}>
                 <AuthGuard>
                     <Forum />

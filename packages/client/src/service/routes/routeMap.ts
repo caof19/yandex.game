@@ -5,6 +5,9 @@ export const relativeRoutes = {
     serverError: {
         path: "/500",
     },
+    topic: {
+        path: "/forum/:id",
+    },
     forum: {
         path: "/forum",
     },
