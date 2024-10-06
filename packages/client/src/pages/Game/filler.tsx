@@ -7,8 +7,11 @@ const ROWS = 12; // Количество строк
 const COLS = 12; // Количество столбцов
 const WIN_CONDITION = ROWS * COLS;
 
-export const playerStart = [ROWS - 1, 0];
-export const compStart = [0, COLS - 1];
+// [row, column]
+const playerStart = [ROWS - 1, 0];
+const compStart = [0, COLS - 1];
+
+// Возможные цвета
 export const COLORS = [
     "#FF6347",
     "#4682B4",
@@ -16,7 +19,14 @@ export const COLORS = [
     "#FFD700",
     "#6A5ACD",
     "#FF1493",
-]; // Возможные цвета
+];
+
+const moveOnGrid = (row: number, col: number, queue: OwnedCell[]) => {
+    if (row > 0) queue.push({ row: row - 1, col, owner: "none" });
+    if (row < ROWS - 1) queue.push({ row: row + 1, col, owner: "none" });
+    if (col > 0) queue.push({ row, col: col - 1, owner: "none" });
+    if (col < COLS - 1) queue.push({ row, col: col + 1, owner: "none" });
+};
 
 type Owner = "player" | "comp" | "none";
 
@@ -30,9 +40,10 @@ type OwnedCell = Cell & {
 export interface ColoredCell extends OwnedCell {
     color: string;
 }
+export type Grid = ColoredCell[][];
 
 const isSameColor = (
-    grid: ColoredCell[][],
+    grid: Grid,
     row: number,
     col: number,
     color: string,
@@ -40,87 +51,74 @@ const isSameColor = (
     return grid[row]?.[col]?.color === color;
 };
 
-const FillerGame = () => {
+const getCell = (row: number, column: number, fnGrid: Grid) =>
+    fnGrid[row][column];
+
+const FillerGame = (props: { name?: string }) => {
+    const { name } = props;
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const { grid, setGrid } = useFillerCanvas(ROWS, COLS, canvasRef);
-    const [currentColor, setCurrentColor] = useState<string>(
-        grid[playerStart[0]][playerStart[1]].color,
+
+    const [playerColor, setCurrentColor] = useState<string>(
+        getCell(playerStart[0], playerStart[1], grid).color,
     );
     const [computerColor, setComputerColor] = useState<string>(
-        grid[compStart[0]][compStart[1]].color,
+        getCell(compStart[0], compStart[1], grid).color,
     );
 
     const [isPlayerTurn, setIsPlayerTurn] = useState(true);
 
-    const floodFill = (
-        targetColor: string,
-        replacementColor: string,
+    function floodFill(
+        oldColor: string,
+        newColor: string,
         isPlayer: boolean,
         skipRender?: boolean,
-    ): number => {
-        const row = isPlayer ? playerStart[0] : compStart[0];
-        const col = isPlayer ? playerStart[1] : compStart[1];
+    ): number {
+        const [row, col] = isPlayer ? playerStart : compStart;
+        const owner = isPlayer ? "player" : "comp";
+        const newGrid = grid.map((x) => x.map((y) => ({ ...y })));
+        const fillQueue: OwnedCell[] = [{ row, col, owner: owner }];
 
-        const newGrid = [...grid];
-        const fillQueue: OwnedCell[] = [
-            { row, col, owner: isPlayer ? "player" : "comp" },
-        ];
-        console.log("start");
         const visited = new Set<string>();
         while (fillQueue.length > 0) {
             const { row, col } = fillQueue.pop()!;
             const key = `${row},${col}`;
 
             if (visited.has(key)) continue;
-
             visited.add(key);
-            const newCell = newGrid[row][col];
-            if (isSameColor(grid, row, col, targetColor)) {
-                newCell.owner = isPlayer ? "player" : "comp";
-                newCell.color = replacementColor;
-                if (row > 0)
-                    fillQueue.push({ row: row - 1, col, owner: "none" });
-                if (row < ROWS - 1)
-                    fillQueue.push({ row: row + 1, col, owner: "none" });
-                if (col > 0)
-                    fillQueue.push({ row, col: col - 1, owner: "none" });
-                if (col < COLS - 1)
-                    fillQueue.push({ row, col: col + 1, owner: "none" });
-            } else if (isSameColor(grid, row, col, replacementColor)) {
-                newCell.owner = isPlayer ? "player" : "comp";
-            }
 
-            // } else if (isSameColor(grid, row, col, replacementColor)) {
-            // newCell.owner = isPlayer ? "player" : "comp";
-            // }
+            const newCell = getCell(row, col, newGrid);
+
+            if (
+                isSameColor(newGrid, row, col, oldColor) ||
+                isSameColor(newGrid, row, col, newColor)
+            ) {
+                newCell.owner = owner;
+                newCell.color = newColor;
+                moveOnGrid(row, col, fillQueue);
+            }
         }
-        console.log("end");
 
         if (!skipRender) {
             setGrid(newGrid);
         }
 
-        const result = grid.reduce((acc, curr) => {
-            const items = curr.filter(
-                (x) => x.owner == (isPlayer ? "player" : "comp"),
-            ).length;
+        return newGrid.reduce((acc, curr) => {
+            const items = curr.filter((x) => x.owner == owner).length;
             return acc + items;
         }, 0);
-        console.log(result);
-        return result;
-    };
+    }
 
     const [playerCells, setPlayerCells] = useState(
-        floodFill(currentColor, currentColor, true, true),
+        floodFill(playerColor, playerColor, true, true),
     );
     const [computerCells, setComputerCells] = useState(
         floodFill(computerColor, computerColor, false, true),
     );
 
-    // Ход компьютера
     const computerMove = () => {
         const availableColors = COLORS.filter(
-            (color) => color !== computerColor && color !== currentColor,
+            (color) => color !== computerColor && color !== playerColor,
         );
 
         const colors: { [key: string]: number } = {};
@@ -140,7 +138,6 @@ const FillerGame = () => {
 
         const newlyCapturedCells = floodFill(computerColor, bestColor, false);
         setComputerColor(bestColor);
-
         setComputerCells(newlyCapturedCells);
         setIsPlayerTurn(true);
     };
@@ -148,9 +145,8 @@ const FillerGame = () => {
     const playerMove = (color: string) => {
         if (!isPlayerTurn || color === computerColor) return;
 
-        const newlyCapturedCells = floodFill(currentColor, color, true);
+        const newlyCapturedCells = floodFill(playerColor, color, true);
 
-        console.log("player cells : " + newlyCapturedCells);
         setCurrentColor(color);
         setPlayerCells(newlyCapturedCells);
         setIsPlayerTurn(false);
@@ -158,7 +154,7 @@ const FillerGame = () => {
 
     useEffect(() => {
         if (computerCells > WIN_CONDITION || playerCells > WIN_CONDITION) {
-            // finish game
+            // TODO: finish game
         }
 
         if (!isPlayerTurn) {
@@ -180,7 +176,7 @@ const FillerGame = () => {
                 {COLORS.map(
                     (color) =>
                         color !== computerColor &&
-                        color !== currentColor && (
+                        color !== playerColor && (
                             <Button
                                 key={color}
                                 onClick={() => playerMove(color)}
@@ -201,6 +197,7 @@ const FillerGame = () => {
                 <p>Захваченные ячейки игрока: {playerCells}</p>
                 <p>Захваченные ячейки компьютера: {computerCells}</p>
             </div>
+            <div>{name ?? "Игрок"}</div>
         </div>
     );
 };
