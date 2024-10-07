@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import peachIcon from "../../assets/svg/peach.svg";
-import { TTopic } from "../../Components/Topics";
+import { TTopic } from "../../components/Topics";
 import { Link, useParams } from "react-router-dom";
 import { Card, Divider, Flex, Layout, Space, Typography } from "antd";
 import { relativeRoutes } from "../../service/routes/routeMap";
 import styles from "./styles.module.css";
 import { testComments, testTopics } from "./testData";
 import { convertDate } from "../../utils/converDate";
-import { Comments, TComment } from "../../Components/Comments";
-import { CommentForm } from "../../Components/CommentForm";
-import { Loader } from "../../Components/Loader";
+import { Comments, TComment } from "../../components/Comments";
+import { CommentForm } from "../../components/CommentForm";
+import { Loader } from "../../components/Loader";
 
 export const Topic = () => {
     const params: { id: string } = useParams();

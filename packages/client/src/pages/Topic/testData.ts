@@ -1,5 +1,5 @@
-import { TComment } from "../../Components/Comments";
-import { TTopic } from "../../Components/Topics";
+import { TComment } from "../../components/Comments";
+import { TTopic } from "../../components/Topics";
 
 export const testTopics: TTopic[] = [
     {

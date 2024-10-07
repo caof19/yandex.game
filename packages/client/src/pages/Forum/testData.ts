@@ -1,4 +1,4 @@
-import { TTopic } from "../../Components/Topics";
+import { TTopic } from "../../components/Topics";
 
 export const testData: TTopic[] = [
     {
