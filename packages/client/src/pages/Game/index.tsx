@@ -1,5 +1,6 @@
 import React from "react";
+import FillerGame from "./filler";
 
-export const Game: React.FC<object> = () => {
-    return <div>Game:</div>;
+export const Game = () => {
+    return <FillerGame />;
 };

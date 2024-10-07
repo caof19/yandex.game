@@ -1,0 +1,1 @@
+export { getResourceByPath } from "./resource";
