@@ -5,7 +5,7 @@ import { ConfigProvider, theme } from "antd";
 import { Routes } from "./pages";
 
 function App() {
-    const isDark = Math.random() > 0.5;
+    const isDark = false;
 
     return (
         <Router history={history}>

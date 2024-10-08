@@ -4,10 +4,10 @@ import Title from "antd/es/typography/Title";
 import peachIcon from "../../assets/svg/peach.svg";
 import { Link } from "react-router-dom";
 import { relativeRoutes } from "../../service/routes/routeMap";
-import { Topics, TTopic } from "../../components/Topics";
+import { Topics, TTopic } from "../../Components/Topics";
 import { testData } from "./testData";
 import styles from "./styles.module.css";
-import { Loader } from "../../components/Loader";
+import { Loader } from "../../Components/Loader";
 
 export const Forum = () => {
     const [topics, setTopics] = useState<TTopic[] | undefined>();

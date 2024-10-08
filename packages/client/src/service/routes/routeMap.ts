@@ -5,9 +5,6 @@ export const relativeRoutes = {
     serverError: {
         path: "/500",
     },
-    topic: {
-        path: "/forum/:id",
-    },
     forum: {
         path: "/forum",
     },
@@ -18,7 +15,7 @@ export const relativeRoutes = {
         path: "/play",
     },
     profile: {
-        path: "/me",
+        path: "/profile",
     },
     auth: {
         path: "/auth",
@@ -30,6 +27,9 @@ export const relativeRoutes = {
     singUp: {
         path: "/sign-up",
         parent: "auth",
+    },
+    startPage: {
+        path: "/main",
     },
 };
 

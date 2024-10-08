@@ -9,21 +9,17 @@ import { Forum } from "./Forum";
 import { ServerError } from "./ServerError";
 import { ClientError } from "./ClientError";
 import { DefaultPage } from "./DefaultPage";
-import { Topic } from "./Topic";
+import { StartPage } from "./StartPage";
 
 export const Routes = () => {
     return (
         <Switch>
+            <Route path={routes.startPage.path} component={StartPage} />
             <Route path={routes.clientError.path} component={ClientError} />
             <Route path={routes.serverError.path} component={ServerError} />
             <Route path={routes.leaderBoard.path} component={LeaderBoard} />
             <Route path={routes.signIn.path} component={SingIn} />
             <Route path={routes.singUp.path} component={SingUp} />
-            <Route path={routes.topic.path}>
-                <AuthGuard>
-                    <Topic />
-                </AuthGuard>
-            </Route>
             <Route path={routes.forum.path}>
                 <AuthGuard>
                     <Forum />
