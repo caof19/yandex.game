@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import useFillerCanvas from "./canvas/useCanvas";
+import { COLORS_TO_IMAGE } from "@/service/const";
 
 const CELL_SIZE = 40; // Размер одной ячейки
 const ROWS = 12; // Количество строк
@@ -182,6 +183,7 @@ const FillerGame = (props: { name?: string }) => {
                                 onClick={() => playerMove(color)}
                                 style={{
                                     backgroundColor: color,
+                                    backgroundImage: `url(${COLORS_TO_IMAGE[color]})`,
                                     width: "50px",
                                     height: "50px",
                                     marginRight: "10px",

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        opacity: .91;
+      }
+
+      .cls-3 {
+        fill: gold;
+      }
+
+      .cls-4 {
+        filter: url(#luminosity-invert);
+      }
+
+      .cls-5 {
+        opacity: .03;
+      }
+
+      .cls-6 {
+        mask: url(#mask);
+      }
+    </style>
+    <filter id="luminosity-invert" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feColorMatrix values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/>
+    </filter>
+    <mask id="mask" x="-2" y="-2" width="44" height="44" maskUnits="userSpaceOnUse">
+      <g class="cls-4">
+        <image width="44" height="44" transform="translate(-2 -2)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAACXBIWXMAAAsSAAALEgHS3X78AAAC2UlEQVRYhe2ZaU8qQRREL6sKGIVEDR8I//+fISRsIougmNOPmlxn0eTBsCRU0hnAHvtM9e0OVBfMbGsXpOIlwaKyXtzd3dnj46PV63Wr1WpWrVatXC5bqVQKrVgsWqFQCH113Ufb7b+J5ar2+fkZ2nq9to+PD1ssFvb+/m7j8Ti8/gEMbKfTsefnZ2s2m3Z/f2+3t7cBvFKpHBzag359fYUGJLDAvb29BdB+vx/GSgDjLLDdbtdeXl6s1WpZo9EIzgMtYNqhgeWsXJ3NZjYajez19TX0HQ6H0X0RMGWAs8Di9NPTkz08PIQHubm5yRUYdzebja1WK5vP58FZxkXT6TSwJYBxkTLAWWDb7XZU095hgQr8fwWkwAWMw9Qspcg4wMPE+AlgFhgdKQOcBRbHeTr+5mHzECUBNLOJlstlVJKMnwDGQZ6EDriq3UL/IG9pN0I4zfh+/UhFD8xuQAcgta0dW3EG3nuOCJgp11P6vffYYkwA1eDwpRgR8aF2AbU8a/Y3efPiHD8s9NCngrUdMOOLJ9Phc5Jg42wJh/2TnVKe5Yf7Z2XrTr/N9sV9vbwCH1JppXF1+NC6iF3iN12B89bZA+vXtXR1+JCKu3v2wGm6AuetCNgHG8oKTqU4S6bDWZ1OLc+T6fApoRUOEq5kOqwyoJNuOJU0vlqmwwImMqLx+tjyDEo1vXkRsOJOGikiV246thQKqsWNK3tghcmkhqSIytWIi/L+Fa0EU2NzhQXzUoEFS5hMPkuSabtgTjmbz4dtzyxDdekXmOLWyWQSGGAhxYQtAUxnYnqSb5JDYOisQNvnXGl5wb7AKgUF2oPBILDAlAqMu3RUTM+N/sjAA6dFWX89QHx70nstqrQjg16vF66wJICZCg5AbBfTk3wL1h/K/HVkEP88az/3p0h+Z6BmmVnNNkywJYBxl8E4AIkfe3H1pXCoHC4NWoufpgXoD2WuJ6G5ysy+AVENWcp/bxvLAAAAAElFTkSuQmCC"/>
+      </g>
+    </mask>
+  </defs>
+  <g>
+    <rect class="cls-3" width="40" height="40"/>
+    <g class="cls-5">
+      <path d="M39,1V39H1V1H39m1-1H0V40H40V0h0Z"/>
+    </g>
+  </g>
+  <g class="cls-6">
+    <g class="cls-2">
+      <rect class="cls-1" width="40" height="40"/>
+      <g class="cls-5">
+        <path class="cls-1" d="M39,1V39H1V1H39m1-1H0V40H40V0h0Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
