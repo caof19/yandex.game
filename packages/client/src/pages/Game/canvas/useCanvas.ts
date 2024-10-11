@@ -1,8 +1,6 @@
 import { useEffect, useState, RefObject } from "react";
-import { ColoredCell, COLORS, Grid } from "../filler";
+import { ColoredCell, getRandomColor, Grid, setOwner } from "../gameHelpers";
 const CELL_SIZE = 40;
-
-const getRandomColor = () => COLORS[Math.floor(Math.random() * COLORS.length)];
 
 const useFillerCanvas = (
     rows: number,
@@ -10,7 +8,7 @@ const useFillerCanvas = (
     canvasRef: RefObject<HTMLCanvasElement>,
 ) => {
     const generateGrid = (): Grid => {
-        const grid: Grid = [];
+        const generatedGrid: Grid = [];
         for (let row = 0; row < rows; row++) {
             const currentRow: ColoredCell[] = [];
             for (let col = 0; col < columns; col++) {
@@ -21,16 +19,19 @@ const useFillerCanvas = (
                     owner: "none",
                 });
             }
-            grid.push(currentRow);
+            generatedGrid.push(currentRow);
         }
-        return grid;
+        setOwner(generatedGrid, "player", columns, rows);
+        setOwner(generatedGrid, "comp", columns, rows);
+
+        return generatedGrid;
     };
 
-    const [grid, setGrid] = useState<Grid>(generateGrid());
+    const [grid, setGrid] = useState<Grid>(() => generateGrid());
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (canvas) {
+        if (canvas && grid) {
             const ctx = canvas.getContext("2d");
             if (ctx) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
