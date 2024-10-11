@@ -10,6 +10,7 @@ import {
     moveOnGrid,
     OwnedCell,
 } from "./gameHelpers";
+import { COLORS_TO_IMAGE } from "@/service/const";
 
 const CELL_SIZE = 40; // Размер одной ячейки
 const ROWS = 12; // Количество строк
@@ -153,6 +154,7 @@ const FillerGame = (props: GameProps) => {
                                 onClick={() => playerMove(color)}
                                 style={{
                                     backgroundColor: color,
+                                    backgroundImage: `url(${COLORS_TO_IMAGE[color]})`,
                                     width: "50px",
                                     height: "50px",
                                     marginRight: "10px",

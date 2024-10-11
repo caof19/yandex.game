@@ -2,6 +2,9 @@ import { useEffect, useState, RefObject } from "react";
 import { ColoredCell, getRandomColor, Grid, setOwner } from "../gameHelpers";
 const CELL_SIZE = 40;
 
+import fillCellImage from "@/pages/Game/canvas/FillCell";
+import { COLORS_TO_IMAGE } from "@/service/const";
+
 const useFillerCanvas = (
     rows: number,
     columns: number,
@@ -29,6 +32,30 @@ const useFillerCanvas = (
 
     const [grid, setGrid] = useState<Grid>(() => generateGrid());
 
+    /* Для создания кеша картинок, без него каждый ход картинки загружаются по новой и поле моргает */
+    const [images, setImages] = useState<{ [key: string]: HTMLImageElement }>(
+        {},
+    );
+
+    useEffect(() => {
+        const colorCodes = Object.keys(COLORS_TO_IMAGE);
+        const loadedImages: { [key: string]: HTMLImageElement } = {};
+
+        let loadedCount = 0;
+        colorCodes.forEach((colorCode) => {
+            const src = COLORS_TO_IMAGE[colorCode];
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                loadedCount++;
+                if (loadedCount === colorCodes.length) {
+                    setImages(loadedImages);
+                }
+            };
+            loadedImages[colorCode] = img;
+        });
+    }, []);
+
     useEffect(() => {
         const canvas = canvasRef.current;
         if (canvas && grid) {
@@ -41,20 +68,18 @@ const useFillerCanvas = (
     }, [grid]);
 
     const drawGrid = (ctx: CanvasRenderingContext2D, grid: Grid) => {
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, 5000, 5000);
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < columns; col++) {
-                ctx.fillStyle = grid[row][col].color;
-                ctx.fillRect(
+                fillCellImage(
                     col * CELL_SIZE,
                     row * CELL_SIZE,
                     CELL_SIZE,
                     CELL_SIZE,
-                );
-                ctx.strokeRect(
-                    col * CELL_SIZE,
-                    row * CELL_SIZE,
-                    CELL_SIZE,
-                    CELL_SIZE,
+                    grid[row][col].color,
+                    ctx,
+                    images,
                 );
             }
         }
