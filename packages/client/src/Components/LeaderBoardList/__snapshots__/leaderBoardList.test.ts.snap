@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Лидерборд рендерится без ошибок 1`] = `
+<div
+  className="ant-list ant-list-split css-dev-only-do-not-override-1uq9j6g"
+  style={Object {}}
+>
+  <div
+    className="ant-spin-nested-loading css-dev-only-do-not-override-1uq9j6g"
+  >
+    <div
+      className="ant-spin-container"
+    >
+      <li
+        className="ant-list-item"
+      >
+        <div
+          className="ant-flex css-dev-only-do-not-override-1uq9j6g"
+          style={
+            Object {
+              "gap": 16,
+            }
+          }
+        >
+          <div
+            className="ant-space css-dev-only-do-not-override-1uq9j6g ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
+            style={Object {}}
+          >
+            <div
+              className="ant-space-item"
+            >
+              <span
+                className="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                style={
+                  Object {
+                    "WebkitLineClamp": undefined,
+                  }
+                }
+              >
+                1
+              </span>
+            </div>
+            <div
+              className="ant-space-item"
+            >
+              <span
+                className="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                style={
+                  Object {
+                    "WebkitLineClamp": undefined,
+                  }
+                }
+              >
+                user001
+              </span>
+            </div>
+          </div>
+          <span
+            className="ant-typography css-dev-only-do-not-override-1uq9j6g"
+            style={
+              Object {
+                "WebkitLineClamp": undefined,
+              }
+            }
+          >
+            1000
+          </span>
+        </div>
+      </li>
+    </div>
+  </div>
+</div>
+`;
