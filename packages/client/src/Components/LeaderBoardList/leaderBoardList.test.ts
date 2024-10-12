@@ -1,4 +1,3 @@
-import * as renderer from "react-test-renderer";
 import { render } from "@testing-library/react";
 import { LeaderBoardList } from ".";
 const leaderBoardTestData = [
@@ -9,16 +8,18 @@ const leaderBoardTestData = [
         score: 1000,
     },
 ];
-it("Лидерборд рендерится без ошибок", () => {
-    const tree = renderer
-        .create(LeaderBoardList({ list: leaderBoardTestData }))
-        .toJSON();
-    expect(tree).toMatchSnapshot();
-});
+describe("Лидерборд", () => {
+    it("Лидерборд рендерится без ошибок", () => {
+        const { container } = render(
+            LeaderBoardList({ list: leaderBoardTestData }),
+        );
+        expect(container).toMatchSnapshot();
+    });
 
-it("Тестовые данные отрисовываются в компоненте", () => {
-    const { getByText } = render(
-        LeaderBoardList({ list: leaderBoardTestData }),
-    );
-    expect(getByText("user001")).toBeTruthy();
+    it("Тестовые данные отрисовываются в компоненте лидерборда", () => {
+        const { getByText } = render(
+            LeaderBoardList({ list: leaderBoardTestData }),
+        );
+        expect(getByText("user001")).toBeTruthy();
+    });
 });

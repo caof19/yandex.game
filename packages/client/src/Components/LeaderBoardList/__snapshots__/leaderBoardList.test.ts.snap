@@ -1,72 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Лидерборд рендерится без ошибок 1`] = `
-<div
-  className="ant-list ant-list-split css-dev-only-do-not-override-1uq9j6g"
-  style={Object {}}
->
+exports[`Лидерборд Лидерборд рендерится без ошибок 1`] = `
+<div>
   <div
-    className="ant-spin-nested-loading css-dev-only-do-not-override-1uq9j6g"
+    class="ant-list ant-list-split css-dev-only-do-not-override-1uq9j6g"
   >
     <div
-      className="ant-spin-container"
+      class="ant-spin-nested-loading css-dev-only-do-not-override-1uq9j6g"
     >
-      <li
-        className="ant-list-item"
+      <div
+        class="ant-spin-container"
       >
-        <div
-          className="ant-flex css-dev-only-do-not-override-1uq9j6g"
-          style={
-            Object {
-              "gap": 16,
-            }
-          }
+        <li
+          class="ant-list-item"
         >
           <div
-            className="ant-space css-dev-only-do-not-override-1uq9j6g ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
-            style={Object {}}
+            class="ant-flex css-dev-only-do-not-override-1uq9j6g"
+            style="gap: 16px;"
           >
             <div
-              className="ant-space-item"
+              class="ant-space css-dev-only-do-not-override-1uq9j6g ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
             >
-              <span
-                className="ant-typography css-dev-only-do-not-override-1uq9j6g"
-                style={
-                  Object {
-                    "WebkitLineClamp": undefined,
-                  }
-                }
+              <div
+                class="ant-space-item"
               >
-                1
-              </span>
+                <span
+                  class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                >
+                  1
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span
+                  class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                >
+                  user001
+                </span>
+              </div>
             </div>
-            <div
-              className="ant-space-item"
+            <span
+              class="ant-typography css-dev-only-do-not-override-1uq9j6g"
             >
-              <span
-                className="ant-typography css-dev-only-do-not-override-1uq9j6g"
-                style={
-                  Object {
-                    "WebkitLineClamp": undefined,
-                  }
-                }
-              >
-                user001
-              </span>
-            </div>
+              1000
+            </span>
           </div>
-          <span
-            className="ant-typography css-dev-only-do-not-override-1uq9j6g"
-            style={
-              Object {
-                "WebkitLineClamp": undefined,
-              }
-            }
-          >
-            1000
-          </span>
-        </div>
-      </li>
+        </li>
+      </div>
     </div>
   </div>
 </div>
