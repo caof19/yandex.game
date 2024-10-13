@@ -6,7 +6,7 @@
  *
  * */
 export default class Auth {
-    private isAuth: boolean;
+    private isAuth = false;
     private static instance: Auth;
 
     constructor() {

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Лидерборд Лидерборд рендерится без ошибок 1`] = `
+<div>
+  <div
+    class="ant-list ant-list-split css-dev-only-do-not-override-1uq9j6g"
+  >
+    <div
+      class="ant-spin-nested-loading css-dev-only-do-not-override-1uq9j6g"
+    >
+      <div
+        class="ant-spin-container"
+      >
+        <li
+          class="ant-list-item"
+        >
+          <div
+            class="ant-flex css-dev-only-do-not-override-1uq9j6g"
+            style="gap: 16px;"
+          >
+            <div
+              class="ant-space css-dev-only-do-not-override-1uq9j6g ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
+            >
+              <div
+                class="ant-space-item"
+              >
+                <span
+                  class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                >
+                  1
+                </span>
+              </div>
+              <div
+                class="ant-space-item"
+              >
+                <span
+                  class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                >
+                  user001
+                </span>
+              </div>
+            </div>
+            <span
+              class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+            >
+              1000
+            </span>
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+</div>
+`;

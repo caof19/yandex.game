@@ -5,7 +5,10 @@ import yellowSprite from "/public/sprites/yellow.svg";
 import purpleSprite from "/public/sprites/purple.svg";
 import pinkSprite from "/public/sprites/pink.svg";
 
-export const COLORS_TO_IMAGE = {
+export type TColorsToImage = {
+    [key: string]: string;
+};
+export const COLORS_TO_IMAGE: TColorsToImage = {
     "#FF6347": orangeSprite,
     "#4682B4": seaSprite,
     "#32CD32": greenSprite,

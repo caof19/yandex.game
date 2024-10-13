@@ -21,7 +21,7 @@ export type TTopicProps = {
     topic: TTopic;
 };
 
-const Topic: React.FC<TTopicProps> = (props) => {
+const Topic = (props: TTopicProps) => {
     return (
         <List.Item>
             <Card
@@ -43,7 +43,7 @@ const Topic: React.FC<TTopicProps> = (props) => {
         </List.Item>
     );
 };
-export const Topics: React.FC<TTopicsProps> = (props) => {
+export const Topics = (props: TTopicsProps) => {
     return (
         <List>
             {props.topics.map((topic, index) => (

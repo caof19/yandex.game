@@ -4,3 +4,5 @@ node_modules/
 .vscode
 dist
 tmp
+# __snapshots__/
+lerna-debug.log
