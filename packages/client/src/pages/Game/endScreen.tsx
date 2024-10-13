@@ -36,7 +36,7 @@ export const EndScreen = (props: GameProps) => {
                             К таблице чемпионов
                         </NavLink>
                         <NavLink to={"/forum"}>На форум</NavLink>
-                        <NavLink to={"/gamedoc"}>Описание игры</NavLink>
+                        <NavLink to={"/main"}>Описание игры</NavLink>
                     </Flex>
                 </Content>
             </Flex>

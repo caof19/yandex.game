@@ -30,7 +30,7 @@ export const StartScreen = (props: {
                         </Button>
                     </Flex>
                     <Divider className={styles.divider}>
-                        <NavLink to={"/gamedoc"}>Описание игры</NavLink>
+                        <NavLink to={"/main"}>Описание игры</NavLink>
                     </Divider>
                 </Content>
             </Flex>

@@ -4,6 +4,7 @@ import style from "./SignIn.module.css";
 import axios from "axios";
 import { useAppDispatch } from "@/service/hook";
 import { login } from "@/store/slice/auth";
+import { useEffect } from "react";
 
 const YANDEX_API_URL = "https://ya-praktikum.tech/api/v2";
 
@@ -13,7 +14,9 @@ export const SingIn = () => {
 
     const handleFinish = (val) => {
         axios
-            .post(YANDEX_API_URL + "/auth/signin", val)
+            .post(YANDEX_API_URL + "/auth/signin", val, {
+                withCredentials: true,
+            })
             .then(() => {
                 message.open({
                     type: "success",
@@ -23,15 +26,15 @@ export const SingIn = () => {
                 dispatch(login(val));
 
                 setTimeout(() => {
-                    history.push("/play"); // Укажите путь к целевой странице
-                }, 3000);
+                    history.push("/play");
+                }, 1000);
             })
             .catch((res) => {
                 const errText = res.response?.data?.reason;
 
                 message.error({
                     content: errText,
-                    duration: 3, // Время исчезновения через 3 секунды
+                    duration: 3,
                 });
             });
     };

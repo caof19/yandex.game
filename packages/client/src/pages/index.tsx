@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import { routes, AuthGuard } from "../service";
+import { routes } from "../service";
 import { SingIn } from "./SignIn";
 import { SingUp } from "./SignUp";
 import { Profile } from "./Profile";
@@ -11,6 +11,12 @@ import { ClientError } from "./ClientError";
 import { DefaultPage } from "./DefaultPage";
 import { StartPage } from "./StartPage";
 
+import { withAuthCheck } from "@/service/routes/withAuthCheck";
+
+const GameWithAuthCheck = withAuthCheck(Game);
+const ForumWithAuthCheck = withAuthCheck(Forum);
+const ProfileWIthAuthCheck = withAuthCheck(Profile);
+
 export const Routes = () => {
     return (
         <Switch>
@@ -21,19 +27,13 @@ export const Routes = () => {
             <Route path={routes.signIn.path} component={SingIn} />
             <Route path={routes.singUp.path} component={SingUp} />
             <Route path={routes.forum.path}>
-                <AuthGuard>
-                    <Forum />
-                </AuthGuard>
+                <ForumWithAuthCheck />
             </Route>
             <Route path={routes.game.path}>
-                <AuthGuard>
-                    <Game />
-                </AuthGuard>
+                <GameWithAuthCheck />
             </Route>
             <Route path={routes.profile.path}>
-                <AuthGuard>
-                    <Profile />
-                </AuthGuard>
+                <ProfileWIthAuthCheck />
             </Route>
             <Route path="*" component={DefaultPage} />
         </Switch>
