@@ -2,6 +2,7 @@ import { Button } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import useFillerCanvas from "./canvas/useCanvas";
 import { COLORS_TO_IMAGE } from "@/service/const";
+import { withFullscreenApi } from "@/service/hocs/withFullscreenApi";
 
 const CELL_SIZE = 40; // Размер одной ячейки
 const ROWS = 12; // Количество строк
@@ -204,4 +205,4 @@ const FillerGame = (props: { name?: string }) => {
     );
 };
 
-export default FillerGame;
+export default withFullscreenApi(FillerGame);
