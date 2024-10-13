@@ -8,6 +8,7 @@ import pinkSprite from "/public/sprites/pink.svg";
 export type TColorsToImage = {
     [key: string]: string;
 };
+
 export const COLORS_TO_IMAGE: TColorsToImage = {
     "#FF6347": orangeSprite,
     "#4682B4": seaSprite,

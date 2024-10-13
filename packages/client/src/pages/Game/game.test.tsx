@@ -4,7 +4,9 @@ import FillerGame from "./filler";
 describe("Компонент игры", () => {
     let fillerGame: RenderResult;
     beforeEach(() => {
-        fillerGame = render(<FillerGame />);
+        fillerGame = render(
+            <FillerGame params={{}} setGameState={console.log} />,
+        );
     });
     it("рендерится без ошибок", () => {
         expect(fillerGame.getByText("Ход игрока")).toBeTruthy();
