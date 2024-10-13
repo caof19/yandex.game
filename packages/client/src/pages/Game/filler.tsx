@@ -11,6 +11,7 @@ import {
     OwnedCell,
 } from "./gameHelpers";
 import { COLORS_TO_IMAGE } from "@/service/const";
+import { withFullscreenApi } from "@/service/hocs/withFullscreenApi";
 
 const CELL_SIZE = 40; // Размер одной ячейки
 const ROWS = 12; // Количество строк
@@ -175,4 +176,4 @@ const FillerGame = (props: GameProps) => {
     );
 };
 
-export default FillerGame;
+export default withFullscreenApi(FillerGame);
