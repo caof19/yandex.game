@@ -8,6 +8,26 @@
     </head>
     <body>
         <div id="root"></div>
+        <script type="module">
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    const isProduction = import.meta.env.PROD;
+                    const swPath = isProduction
+                        ? "/sw.js"
+                        : "/src/service/service-worker/sw.ts";
+
+                    navigator.serviceWorker
+                        .register(swPath, {
+                            type: "module",
+                            scope: "/",
+                        })
+                        .then((registration) => {
+                            registration.update();
+                        })
+                        .catch(console.log);
+                });
+            }
+        </script>
         <script type="module" src="/src/main.tsx"></script>
     </body>
 </html>
