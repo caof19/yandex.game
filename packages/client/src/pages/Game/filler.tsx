@@ -170,7 +170,6 @@ const FillerGame = (props: GameProps) => {
                 <p>Захваченные ячейки игрока: {playerCells}</p>
                 <p>Захваченные ячейки компьютера: {computerCells}</p>
             </div>
-            <div>{params.userName ?? "Игрок"}</div>
             <Button onClick={restartGame}>Начать заново</Button>
         </div>
     );

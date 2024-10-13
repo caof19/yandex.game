@@ -16,10 +16,10 @@ export const EndScreen = (props: GameProps) => {
             justify="center"
         >
             <Flex vertical gap={32}>
-                <Typography.Text>{`${params.userName}, ${
+                <Typography.Text>{`${
                     params.isWinner
-                        ? "поздравляем с победой!!!"
-                        : "в следующий раз обязательно повезет!"
+                        ? "Поздравляем с победой!!!"
+                        : "В следующий раз обязательно повезет!"
                 }`}</Typography.Text>
                 <Content>
                     <Flex vertical gap={32} align="center">
@@ -27,7 +27,6 @@ export const EndScreen = (props: GameProps) => {
                             onClick={() => {
                                 setGameState({
                                     condition: "game",
-                                    params: { userName: params.userName },
                                 });
                             }}
                         >

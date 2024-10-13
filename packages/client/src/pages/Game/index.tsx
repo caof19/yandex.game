@@ -10,7 +10,6 @@ import { StartScreen } from "./startScreen";
 import { EndScreen } from "./endScreen";
 
 export type GameParams = {
-    userName?: string;
     isWinner?: boolean;
 };
 
