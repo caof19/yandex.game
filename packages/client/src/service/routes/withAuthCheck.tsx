@@ -1,7 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { routes } from "./routeMap";
-import Auth from "../user/Auth";
 import { useAuth } from "@/service/hook";
 
 export const withAuthCheck = <T extends object>(

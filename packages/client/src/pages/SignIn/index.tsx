@@ -4,7 +4,6 @@ import style from "./SignIn.module.css";
 import axios from "axios";
 import { useAppDispatch } from "@/service/hook";
 import { login } from "@/store/slice/auth";
-import { useEffect } from "react";
 
 const YANDEX_API_URL = "https://ya-praktikum.tech/api/v2";
 

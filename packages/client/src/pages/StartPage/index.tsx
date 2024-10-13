@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
     Carousel,
     Divider,
@@ -17,7 +17,6 @@ import { data } from "./data";
 import { Link, useHistory } from "react-router-dom";
 import { relativeRoutes } from "../../service/routes/routeMap";
 import styles from "./styles.module.css";
-import { useAuth } from "@/service/hook";
 
 export const StartPage = () => {
     const { Text } = Typography;
@@ -89,6 +88,7 @@ export const StartPage = () => {
                                 className={styles.link}
                                 component={Typography.Link}
                                 onClick={(e) => {
+                                    e.preventDefault();
                                     history.push("/forum"); // Укажите путь к целевой странице
                                 }}
                             >
