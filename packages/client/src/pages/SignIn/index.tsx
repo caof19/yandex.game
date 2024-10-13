@@ -1,14 +1,15 @@
-import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { useHistory } from "react-router-dom";
 import style from "./SignIn.module.css";
 import axios from "axios";
-import Auth from "../../service/user/Auth";
+import { useAppDispatch } from "@/service/hook";
+import { login } from "@/store/slice/auth";
 
 const YANDEX_API_URL = "https://ya-praktikum.tech/api/v2";
 
 export const SingIn = () => {
     const history = useHistory();
+    const dispatch = useAppDispatch();
 
     const handleFinish = (val) => {
         axios
@@ -19,8 +20,7 @@ export const SingIn = () => {
                     content: "Вы успешно авторизовались",
                 });
 
-                const auth = new Auth();
-                auth.setSignIn();
+                dispatch(login(val));
 
                 setTimeout(() => {
                     history.push("/play"); // Укажите путь к целевой странице
