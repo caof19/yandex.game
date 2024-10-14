@@ -2173,6 +2173,11 @@
     "@types/mime" "*"
     "@types/node" "*"
 
+"@types/serviceworker@^0.0.99":
+  version "0.0.99"
+  resolved "https://registry.yarnpkg.com/@types/serviceworker/-/serviceworker-0.0.99.tgz#9eb154afa215f1baea209ba81562f89bc6ae7e9c"
+  integrity sha512-76rUC1nvR6BsOTlE06urHPn8Q/x+ULuor04SGAdwozdUtSqrc5LCvLzmPANqbx/vL3rgDkjMhJBm7DQsFeWmDA==
+
 "@types/stack-utils@^2.0.0":
   version "2.0.1"
   resolved "https://registry.npmjs.org/@types/stack-utils/-/stack-utils-2.0.1.tgz"

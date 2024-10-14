@@ -1,17 +1,22 @@
 import { cleanupOutdatedCaches } from "workbox-precaching/cleanupOutdatedCaches";
 import { registerRoute } from "workbox-routing";
 import { NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
+import self from "./self";
 
-export function precacheAndServeAssets() {
+const isOriginRequest = (request: Request) => {
     const origin = self.location.origin;
 
+    return request.url.startsWith(origin);
+};
+
+export function precacheAndServeAssets() {
     registerRoute(
         ({ request }) => {
-            return (
-                (request.destination === "document" ||
-                    request.mode === "navigate") &&
-                request.url.startsWith(origin)
-            );
+            const isHTMLRequest =
+                request.destination === "document" ||
+                request.mode === "navigate";
+
+            return isHTMLRequest && isOriginRequest(request);
         },
         new NetworkFirst({
             cacheName: "html",
@@ -19,17 +24,18 @@ export function precacheAndServeAssets() {
     );
     registerRoute(
         ({ request }) => {
+            const resources = ["style", "font", "image"];
             const isApplicationAsset =
                 request.destination === "script" &&
                 request.url.includes("assets");
+            const isStyleFontOrImage = resources.includes(request.destination);
+            const isSvgOrManifest =
+                request.url.endsWith(".svg") ||
+                request.url.includes("manifest");
 
-            // TODO: Тяжело читать это, отрефакторить
             return (
-                (isApplicationAsset ||
-                    ["style", "font", "image"].includes(request.destination) ||
-                    request.url.endsWith(".svg") ||
-                    request.url.includes("manifest")) &&
-                request.url.startsWith(origin)
+                (isApplicationAsset || isStyleFontOrImage || isSvgOrManifest) &&
+                isOriginRequest(request)
             );
         },
         new StaleWhileRevalidate({

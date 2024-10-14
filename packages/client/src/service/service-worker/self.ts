@@ -1,1 +1,3 @@
-export const _self = self as unknown as ServiceWorkerGlobalScope;
+/// <reference lib="WebWorker" />
+declare const self: ServiceWorkerGlobalScope;
+export default self;

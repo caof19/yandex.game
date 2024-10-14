@@ -32,8 +32,6 @@ export default defineConfig({
                     switch (file.name) {
                         case "sw":
                             return `[name].js`;
-                        case "index":
-                            return `assets/index-[hash].js`;
                         default:
                             return `assets/[name]-[hash].js`;
                     }

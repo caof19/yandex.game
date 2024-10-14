@@ -1,5 +1,5 @@
 import { precacheAndServeAssets } from "./precache";
-import { _self } from "./self";
+import self from "./self";
 
 const isProduction = import.meta.env.PROD;
 
@@ -7,10 +7,10 @@ if (isProduction) {
     precacheAndServeAssets();
 }
 
-_self.addEventListener("install", (event) => {
-    _self.skipWaiting();
+self.addEventListener("install", (event) => {
+    self.skipWaiting();
 });
 
-_self.addEventListener("activate", (event) => {
-    event.waitUntil(_self.clients.claim());
+self.addEventListener("activate", (event) => {
+    event.waitUntil(self.clients.claim());
 });
