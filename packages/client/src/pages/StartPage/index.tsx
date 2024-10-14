@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
     Carousel,
     Divider,
@@ -14,18 +14,13 @@ import fillerImageSecond from "../../assets/images/filler2.jpg";
 import leaderboardImage from "../../assets/images/leaderboard.png";
 import peachIcon from "../../assets/svg/peach.svg";
 import { data } from "./data";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { relativeRoutes } from "../../service/routes/routeMap";
 import styles from "./styles.module.css";
 
 export const StartPage = () => {
     const { Text } = Typography;
-
-    const [isAuthorized, setAuthorized] = useState(false);
-    useEffect(() => {
-        //проверка авторизации
-        setAuthorized(Math.random() > 0.5);
-    }, []);
+    const history = useHistory();
     return (
         <Layout>
             <Flex className={styles.container}>
@@ -36,32 +31,17 @@ export const StartPage = () => {
                             <Title>PeachesFiller</Title>
                         </Space>
                         <Space align="center">
-                            {isAuthorized ? (
-                                <Link
-                                    to={relativeRoutes.profile.path}
-                                    component={Typography.Link}
-                                    className={styles["nav-link"]}
-                                >
-                                    Профиль
-                                </Link>
-                            ) : (
-                                <>
-                                    <Link
-                                        to={relativeRoutes.singUp.path}
-                                        component={Typography.Link}
-                                        className={styles["nav-link"]}
-                                    >
-                                        Регистрация
-                                    </Link>
-                                    <Link
-                                        to={relativeRoutes.signIn.path}
-                                        component={Typography.Link}
-                                        className={styles["nav-link"]}
-                                    >
-                                        Вход
-                                    </Link>
-                                </>
-                            )}
+                            <Link
+                                to={relativeRoutes.profile.path}
+                                component={Typography.Link}
+                                className={styles["nav-link"]}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    history.push("/profile"); // Укажите путь к целевой странице
+                                }}
+                            >
+                                Профиль
+                            </Link>
                         </Space>
                     </Space>
                     <Divider className={styles.divider}>Описание игры</Divider>
@@ -107,6 +87,10 @@ export const StartPage = () => {
                                 to={relativeRoutes.leaderBoard.path}
                                 className={styles.link}
                                 component={Typography.Link}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    history.push("/forum"); // Укажите путь к целевой странице
+                                }}
                             >
                                 Перейти
                             </Link>
