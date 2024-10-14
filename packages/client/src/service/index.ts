@@ -1,3 +1,3 @@
 export { history } from "./history";
-export { routes, AuthGuard } from "./routes";
+export { routes } from "./routes";
 export { API } from "./api";
