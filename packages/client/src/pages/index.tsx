@@ -12,10 +12,12 @@ import { DefaultPage } from "./DefaultPage";
 import { StartPage } from "./StartPage";
 
 import { withAuthCheck } from "@/service/routes/withAuthCheck";
+import { Topic } from "./Topic";
 
 const GameWithAuthCheck = withAuthCheck(Game);
 const ForumWithAuthCheck = withAuthCheck(Forum);
 const ProfileWIthAuthCheck = withAuthCheck(Profile);
+const TopicWithAuthCheck = withAuthCheck(Topic);
 
 export const Routes = () => {
     return (
@@ -26,6 +28,9 @@ export const Routes = () => {
             <Route path={routes.leaderBoard.path} component={LeaderBoard} />
             <Route path={routes.signIn.path} component={SingIn} />
             <Route path={routes.singUp.path} component={SingUp} />
+            <Route path={routes.topic.path}>
+                <TopicWithAuthCheck />
+            </Route>
             <Route path={routes.forum.path}>
                 <ForumWithAuthCheck />
             </Route>
