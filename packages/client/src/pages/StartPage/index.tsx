@@ -89,7 +89,7 @@ export const StartPage = () => {
                                 component={Typography.Link}
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    history.push("/forum"); // Укажите путь к целевой странице
+                                    history.push("/leader-board"); // Укажите путь к целевой странице
                                 }}
                             >
                                 Перейти
@@ -103,6 +103,10 @@ export const StartPage = () => {
                             to={relativeRoutes.forum.path}
                             className={styles.link}
                             component={Typography.Link}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                history.push("/forum");
+                            }}
                         >
                             Перейти
                         </Link>
