@@ -1,19 +1,18 @@
 import { getResourceByPath } from "@/service/api/resource";
-import { User } from "@/service/api/user";
+import { useAppSelector } from "@/service/hook";
 import { WarningOutlined } from "@ant-design/icons";
 import { Avatar, Empty, Skeleton } from "antd";
 import { useEffect, useState } from "react";
 
 export function ProfileAvatar() {
-    // TODO: Использовать selector для получения пользователя
-    const user = {} as User;
+    const user = useAppSelector((state) => state.auth.user);
 
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [imageUrl, setImageUrl] = useState<string | null>(null);
 
     useEffect(() => {
-        if (!user.avatar) return;
+        if (!user?.avatar) return;
 
         setIsLoading(true);
 
@@ -29,9 +28,9 @@ export function ProfileAvatar() {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [user.avatar]);
+    }, [user?.avatar]);
 
-    if (!user.avatar) {
+    if (!user?.avatar) {
         return (
             <Avatar
                 size={100}

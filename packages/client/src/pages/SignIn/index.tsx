@@ -1,19 +1,16 @@
 import { Form, Input, Button, message } from "antd";
 import { useHistory } from "react-router-dom";
 import style from "./SignIn.module.css";
-import axios from "axios";
 import { useAppDispatch } from "@/service/hook";
 import { login } from "@/store/slice/auth";
-
-const YANDEX_API_URL = "https://ya-praktikum.tech/api/v2";
+import { API } from "@/service";
 
 export const SingIn = () => {
     const history = useHistory();
     const dispatch = useAppDispatch();
 
     const handleFinish = (val) => {
-        axios
-            .post(YANDEX_API_URL + "/auth/signin", val)
+        API.post("/auth/signin", val)
             .then(() => {
                 message.open({
                     type: "success",
@@ -22,9 +19,7 @@ export const SingIn = () => {
 
                 dispatch(login(val));
 
-                setTimeout(() => {
-                    history.push("/play"); // Укажите путь к целевой странице
-                }, 3000);
+                history.push("/play");
             })
             .catch((res) => {
                 const errText = res.response?.data?.reason;
