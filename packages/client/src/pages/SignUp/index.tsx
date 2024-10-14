@@ -116,9 +116,7 @@ export const SingUp: React.FC = () => {
                     content: "Регистрация прошла успешно!",
                 });
 
-                setTimeout(() => {
-                    history.push("/auth/sign-in"); // Укажите путь к целевой странице
-                }, 3000);
+                history.push("/auth/sign-in");
             })
             .catch((res) => {
                 const errText = res.response?.data?.reason;

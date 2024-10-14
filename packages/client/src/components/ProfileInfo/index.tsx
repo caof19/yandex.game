@@ -1,4 +1,5 @@
 import { User } from "@/service/api/user";
+import { useAppSelector } from "@/service/hook";
 import { Button, Form, Input, Space } from "antd";
 
 // TODO: Вынести это
@@ -41,8 +42,7 @@ export function ProfileInfo({
     onSubmit,
     onCancelEdit,
 }: ProfileInfoProps) {
-    // TODO: Использовать selector для получения пользователя
-    const user = {} as User;
+    const user = useAppSelector((state) => state.auth.user);
 
     const [form] = Form.useForm();
 
@@ -51,6 +51,8 @@ export function ProfileInfo({
 
         onCancelEdit();
     };
+
+    console.log(user, "user");
 
     return (
         <Form

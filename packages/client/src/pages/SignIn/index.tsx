@@ -4,24 +4,44 @@ import style from "./SignIn.module.css";
 import { useAppDispatch } from "@/service/hook";
 import { login } from "@/store/slice/auth";
 import { API } from "@/service";
+import { User } from "@/service/api/user";
 
 export const SingIn = () => {
     const history = useHistory();
     const dispatch = useAppDispatch();
 
-    const handleFinish = (val) => {
+    const handleFinish = async (val) => {
         API.post("/auth/signin", val)
-            .then(() => {
+            .then(() => API.get<User>("/auth/user"))
+            .then(({ data }) => {
                 message.open({
                     type: "success",
                     content: "Вы успешно авторизовались",
                 });
 
-                dispatch(login(val));
+                dispatch(login(data));
 
                 history.push("/play");
             })
             .catch((res) => {
+                if (
+                    res?.response?.data?.reason?.includes(
+                        "User already in system",
+                    )
+                ) {
+                    // TODO: Это переписать надо, вынести в redux thunks
+                    API.get<User>("/auth/user").then(({ data }) => {
+                        message.open({
+                            type: "success",
+                            content: "Вы успешно авторизовались",
+                        });
+
+                        dispatch(login(data));
+
+                        history.push("/play");
+                    });
+                    return;
+                }
                 const errText = res.response?.data?.reason;
 
                 message.error({
