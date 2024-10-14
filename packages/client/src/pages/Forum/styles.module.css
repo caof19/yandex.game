@@ -1,0 +1,26 @@
+.page {
+    min-height: 100vh;
+}
+.container {
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 1024px;
+    width: 100%;
+}
+content {
+    width: 100%;
+    margin: 0 auto;
+}
+a.link {
+    color: #ffc53d;
+    font-size: 16px;
+}
+
+.header {
+    justify-content: space-between;
+    width: 100%;
+}
+.logo {
+    height: 42px;
+    width: 42px;
+}
