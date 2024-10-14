@@ -1,7 +1,13 @@
+import { User } from "@/service/api/user";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    user: {},
+type TInitialState = {
+    user: User | null;
+    isLogged: boolean;
+};
+
+const initialState: TInitialState = {
+    user: null,
     isLogged: false,
 };
 

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, Button, message } from "antd";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import style from "./SignUp.module.css";
+import { API } from "@/service";
 
 const validationSchema = {
     upperFirstLetter: new RegExp(/^[A-ZА-Я]/),
@@ -104,23 +104,19 @@ const userFields = [
         ],
     },
 ];
-const YANDEX_API_URL = "https://ya-praktikum.tech/api/v2";
 
 export const SingUp: React.FC = () => {
     const history = useHistory();
 
     const handleFinish = (val) => {
-        axios
-            .post(YANDEX_API_URL + "/auth/signup", val)
+        API.post("/auth/signup", val)
             .then(() => {
                 message.open({
                     type: "success",
                     content: "Регистрация прошла успешно!",
                 });
 
-                setTimeout(() => {
-                    history.push("/auth/sign-in"); // Укажите путь к целевой странице
-                }, 3000);
+                history.push("/auth/sign-in");
             })
             .catch((res) => {
                 const errText = res.response?.data?.reason;

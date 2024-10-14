@@ -1,32 +1,47 @@
 import { Form, Input, Button, message } from "antd";
 import { useHistory } from "react-router-dom";
 import style from "./SignIn.module.css";
-import axios from "axios";
 import { useAppDispatch } from "@/service/hook";
 import { login } from "@/store/slice/auth";
-
-const YANDEX_API_URL = "https://ya-praktikum.tech/api/v2";
+import { API } from "@/service";
+import { User } from "@/service/api/user";
 
 export const SingIn = () => {
     const history = useHistory();
     const dispatch = useAppDispatch();
 
-    const handleFinish = (val) => {
-        axios
-            .post(YANDEX_API_URL + "/auth/signin", val)
-            .then(() => {
+    const handleFinish = async (val) => {
+        API.post("/auth/signin", val)
+            .then(() => API.get<User>("/auth/user"))
+            .then(({ data }) => {
                 message.open({
                     type: "success",
                     content: "Вы успешно авторизовались",
                 });
 
-                dispatch(login(val));
+                dispatch(login(data));
 
-                setTimeout(() => {
-                    history.push("/play"); // Укажите путь к целевой странице
-                }, 3000);
+                history.push("/play");
             })
             .catch((res) => {
+                if (
+                    res?.response?.data?.reason?.includes(
+                        "User already in system",
+                    )
+                ) {
+                    // TODO: Это переписать надо, вынести в redux thunks
+                    API.get<User>("/auth/user").then(({ data }) => {
+                        message.open({
+                            type: "success",
+                            content: "Вы успешно авторизовались",
+                        });
+
+                        dispatch(login(data));
+
+                        history.push("/play");
+                    });
+                    return;
+                }
                 const errText = res.response?.data?.reason;
 
                 message.error({
