@@ -8,6 +8,9 @@ export const relativeRoutes = {
     forum: {
         path: "/forum",
     },
+    topic: {
+        path: "/forum/:id",
+    },
     leaderBoard: {
         path: "/leader-board",
     },
