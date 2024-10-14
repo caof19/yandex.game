@@ -13,9 +13,7 @@ export const SingIn = () => {
 
     const handleFinish = (val) => {
         axios
-            .post(YANDEX_API_URL + "/auth/signin", val, {
-                withCredentials: true,
-            })
+            .post(YANDEX_API_URL + "/auth/signin", val)
             .then(() => {
                 message.open({
                     type: "success",
@@ -25,15 +23,15 @@ export const SingIn = () => {
                 dispatch(login(val));
 
                 setTimeout(() => {
-                    history.push("/play");
-                }, 1000);
+                    history.push("/play"); // Укажите путь к целевой странице
+                }, 3000);
             })
             .catch((res) => {
                 const errText = res.response?.data?.reason;
 
                 message.error({
                     content: errText,
-                    duration: 3,
+                    duration: 3, // Время исчезновения через 3 секунды
                 });
             });
     };
