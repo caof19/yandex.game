@@ -4,6 +4,7 @@ import { history } from "./service";
 import { ConfigProvider, theme } from "antd";
 import { Routes } from "./pages";
 import { RootErrorBoundary } from "./components";
+import { Layout } from "./components/Layout";
 
 function App() {
     const isDark = false;
@@ -18,7 +19,9 @@ function App() {
                             : theme.compactAlgorithm,
                     }}
                 >
-                    <Routes />
+                    <Layout>
+                        <Routes />
+                    </Layout>
                 </ConfigProvider>
             </Router>
         </RootErrorBoundary>
