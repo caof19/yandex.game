@@ -1,26 +1,35 @@
 import { Flex, List, Space, Typography } from "antd";
 import styles from "./styles.module.css";
-type TLeaderBoardItem = {
-    id: number;
-    position: number;
-    username: string;
-    score: number;
-};
+import {
+    GetAllLeaderoardResponse,
+    LeaderboardData,
+} from "@/service/api/leaderboard";
+
 type TLeaderBoardItemProps = {
-    item: TLeaderBoardItem;
+    item: LeaderboardData & { position: number };
 };
 type TLeaderBoardListProps = {
-    list: TLeaderBoardItem[];
+    list: GetAllLeaderoardResponse;
 };
 const LeaderBoardItem = (props: TLeaderBoardItemProps) => {
     return (
         <List.Item className={styles["leaderboard-row"]}>
-            <Flex gap={16} className={styles["leaderboard-row-inner"]}>
-                <Space align="center">
-                    <Typography.Text>{props.item.position}</Typography.Text>
-                    <Typography.Text>{props.item.username}</Typography.Text>
-                </Space>
-                <Typography.Text>{props.item.score}</Typography.Text>
+            <Flex
+                gap={32}
+                align="center"
+                className={styles["leaderboard-row-inner"]}
+            >
+                <Flex align="center" gap={16}>
+                    <Typography.Text strong>
+                        {props.item.position}
+                    </Typography.Text>
+                    <Typography.Text strong>
+                        {props.item.username}
+                    </Typography.Text>
+                </Flex>
+                <Typography.Text type="warning">
+                    {props.item.persikiFillerScore}
+                </Typography.Text>
             </Flex>
         </List.Item>
     );
@@ -29,10 +38,10 @@ const LeaderBoardItem = (props: TLeaderBoardItemProps) => {
 export const LeaderBoardList = (props: TLeaderBoardListProps) => {
     return (
         <List>
-            {props.list.map((leaderboardItem) => (
+            {props.list.map((leaderboardItem, index) => (
                 <LeaderBoardItem
-                    item={leaderboardItem}
-                    key={leaderboardItem.id}
+                    item={{ ...leaderboardItem.data, position: index + 1 }}
+                    key={index}
                 />
             ))}
         </List>

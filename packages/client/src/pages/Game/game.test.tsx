@@ -1,11 +1,14 @@
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import FillerGame from "./filler";
+import { Provider } from "react-redux";
+import store from "@/store";
 
 describe("Компонент игры", () => {
     let fillerGame: RenderResult;
     beforeEach(() => {
         fillerGame = render(
             <FillerGame params={{}} setGameState={console.log} />,
+            { wrapper: ({ children }) => Provider({ store: store, children }) },
         );
     });
     it("рендерится без ошибок", () => {
