@@ -129,18 +129,14 @@ const FillerGame = (props: GameProps) => {
     const username = useUsername();
 
     const onEndingGame = async () => {
-        username &&
-            (await addUserToLeaderboard({
-                data: { username, persikiFillerScore: playerCells },
-                ratingFieldName: "persikiFillerScore",
-            }));
+        username && addUserToLeaderboard(username);
     };
 
     useEffect(() => {
         if (computerCells > WIN_CONDITION || playerCells > WIN_CONDITION) {
             const isWinner = playerCells > WIN_CONDITION;
             setGameState({ condition: "end", params: { ...params, isWinner } });
-            onEndingGame();
+            isWinner && onEndingGame();
         }
 
         if (!isPlayerTurn) {

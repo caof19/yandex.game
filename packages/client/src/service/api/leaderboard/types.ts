@@ -7,7 +7,7 @@ export interface GetAllLeaderboardRequestArgs {
 }
 export interface AddLeaderboardRequestArgs {
     data: LeaderboardData;
-    ratingFieldName: "persikiFillerScore";
+    ratingFieldName: "peachFillerScore";
 }
 export type GetAllLeaderoardResponse = {
     data: LeaderboardData;

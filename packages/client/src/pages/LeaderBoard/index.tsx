@@ -5,14 +5,18 @@ import { LeaderBoardList, Loader } from "@/components";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { getLeaderboard } from "@/service/api/leaderboard";
+import { useUsername } from "@/service/hook";
+import { getUserScore } from "@/service/api/leaderboard/leaderboard";
 
 export const LeaderBoard = () => {
     const [leaderboardList, setLeaderboardList] = useState([]);
     const [isLoading, setLoading] = useState(false);
+    const x = useUsername();
     useEffect(() => {
         setLoading(true);
+        getUserScore(x ?? "");
         getLeaderboard({
-            ratingFieldName: "persikiFillerScore",
+            ratingFieldName: "peachFillerScore",
             cursor: 0,
             limit: 50,
         }).then((res) => {

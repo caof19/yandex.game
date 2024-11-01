@@ -28,7 +28,7 @@ const LeaderBoardItem = (props: TLeaderBoardItemProps) => {
                     </Typography.Text>
                 </Flex>
                 <Typography.Text type="warning">
-                    {props.item.persikiFillerScore}
+                    {props.item.peachFillerScore}
                 </Typography.Text>
             </Flex>
         </List.Item>

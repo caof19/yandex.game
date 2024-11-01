@@ -3,7 +3,13 @@ import { LeaderBoardList } from ".";
 import store from "@/store";
 import { Provider } from "react-redux";
 const leaderBoardTestData = [
-    { data: { position: 1, username: "user001", persikiFillerScore: 1000 } },
+    {
+        data: {
+            position: 1,
+            username: "user001",
+            peachFillerScore: 1000,
+        },
+    },
 ];
 describe("Лидерборд", () => {
     it("Лидерборд рендерится без ошибок", () => {
