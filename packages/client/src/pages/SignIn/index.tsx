@@ -6,7 +6,7 @@ import { login } from "@/store/slice/auth";
 import { API } from "@/service";
 import { User } from "@/service/api/user";
 import { useEffect, useState } from "react";
-import { OAUTH_URL } from "@/service/const";
+import { OAUTH_URL, REDIRECT_URI } from "@/service/const";
 
 export const SingIn = () => {
     const history = useHistory();
@@ -14,12 +14,12 @@ export const SingIn = () => {
     const [yandexAppId, setYandexAppId] = useState("");
 
     useEffect(() => {
-        API.get(
-            "/oauth/yandex/service-id?redirect_uri=http://localhost:3000/login",
-        ).then(({ data }) => {
-            const url = OAUTH_URL.replace("%CLIENT_ID%", data.service_id);
-            setYandexAppId(url);
-        });
+        API.get("/oauth/yandex/service-id?redirect_uri=" + REDIRECT_URI).then(
+            ({ data }) => {
+                const url = OAUTH_URL.replace("%CLIENT_ID%", data.service_id);
+                setYandexAppId(url);
+            },
+        );
     }, []);
 
     const handleFinish = async (val) => {
