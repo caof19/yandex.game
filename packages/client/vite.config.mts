@@ -18,7 +18,11 @@ export default defineConfig({
             "Service-Worker-Allowed": "/",
         },
     },
+    ssr: {
+        format: "cjs",
+    },
     build: {
+        outDir: path.join(__dirname, "dist/client"),
         rollupOptions: {
             input: {
                 sw: path.resolve(
@@ -31,9 +35,11 @@ export default defineConfig({
                 entryFileNames: (file) => {
                     switch (file.name) {
                         case "sw":
-                            return `[name].js`;
+                            return "[name].js";
+                        case "entry-server":
+                            return "[name].js";
                         default:
-                            return `assets/[name]-[hash].js`;
+                            return "assets/[name]-[hash].js";
                     }
                 },
             },

@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button } from "antd/lib";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useFillerCanvas from "./canvas/useCanvas";
 import { GameProps } from ".";

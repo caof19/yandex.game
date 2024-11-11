@@ -1,6 +1,6 @@
-import { Button, Flex, Typography } from "antd";
+import { Button, Flex, Typography } from "antd/lib";
 import React from "react";
-import { Content } from "antd/es/layout/layout";
+import { Content } from "antd/lib/layout/layout";
 import { NavLink } from "react-router-dom";
 import styles from "./endScreen.module.css";
 import { GameProps } from ".";

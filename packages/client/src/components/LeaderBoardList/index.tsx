@@ -1,4 +1,4 @@
-import { Flex, List, Space, Typography } from "antd";
+import { Flex, List, Space, Typography } from "antd/lib";
 import styles from "./styles.module.css";
 type TLeaderBoardItem = {
     id: number;

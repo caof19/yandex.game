@@ -1,13 +1,11 @@
-import React from "react";
-import { Space } from "antd";
+import { Space, Typography } from "antd/lib";
 import styles from "./styles.module.css";
 import peachIcon from "@/assets/svg/peach.svg";
 import { useAuth } from "@/service/hook";
 import { relativeRoutes } from "@/service/routes/routeMap";
-import { Link } from "react-router-dom";
-import Title from "antd/es/typography/Title";
+import { Link, Outlet } from "react-router-dom";
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+export const Layout = () => {
     const isAuthenticated = useAuth();
     return (
         <div className={styles.page}>
@@ -16,7 +14,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     <header className={styles.header}>
                         <Space align="center">
                             <img src={peachIcon} className={styles.logo} />
-                            <Title>PeachesFiller</Title>
+                            <Typography.Title>PeachesFiller</Typography.Title>
                         </Space>
                         <nav className={styles.nav}>
                             {isAuthenticated ? (
@@ -70,7 +68,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                             )}
                         </nav>
                     </header>
-                    {children}
+                    <Outlet />
                 </div>
             </div>
         </div>

@@ -1,13 +1,13 @@
-import { Form, Input, Button, message } from "antd";
-import { useHistory } from "react-router-dom";
+import { Form, Input, Button, message } from "antd/lib";
 import style from "./SignIn.module.css";
 import { useAppDispatch } from "@/service/hook";
 import { login } from "@/store/slice/auth";
 import { API } from "@/service";
 import { User } from "@/service/api/user";
+import { useNavigate } from "react-router-dom";
 
 export const SingIn = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const handleFinish = async (val) => {
@@ -21,7 +21,7 @@ export const SingIn = () => {
 
                 dispatch(login(data));
 
-                history.push("/play");
+                navigate("/play");
             })
             .catch((res) => {
                 if (
@@ -38,7 +38,7 @@ export const SingIn = () => {
 
                         dispatch(login(data));
 
-                        history.push("/play");
+                        navigate("/play");
                     });
                     return;
                 }

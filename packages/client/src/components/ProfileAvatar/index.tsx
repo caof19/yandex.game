@@ -1,7 +1,7 @@
 import { getResourceByPath } from "@/service/api/resource";
 import { useAppSelector } from "@/service/hook";
-import { WarningOutlined } from "@ant-design/icons";
-import { Avatar, Empty, Skeleton } from "antd";
+import { WarningOutlined } from "@ant-design/icons/lib";
+import { Avatar, Empty, Skeleton } from "antd/lib";
 import { useEffect, useState } from "react";
 
 export function ProfileAvatar() {
