@@ -12,6 +12,8 @@ import {
 } from "./gameHelpers";
 import { COLORS_TO_IMAGE } from "@/service/const";
 import { withFullscreenApi } from "@/service/hocs/withFullscreenApi";
+import { addUserToLeaderboard } from "@/service/api/leaderboard";
+import { useUsername } from "@/service/hook";
 
 const CELL_SIZE = 40; // Размер одной ячейки
 const ROWS = 12; // Количество строк
@@ -124,10 +126,17 @@ const FillerGame = (props: GameProps) => {
         setIsPlayerTurn(false);
     };
 
+    const username = useUsername();
+
+    const onEndingGame = async () => {
+        username && addUserToLeaderboard(username);
+    };
+
     useEffect(() => {
         if (computerCells > WIN_CONDITION || playerCells > WIN_CONDITION) {
             const isWinner = playerCells > WIN_CONDITION;
             setGameState({ condition: "end", params: { ...params, isWinner } });
+            isWinner && onEndingGame();
         }
 
         if (!isPlayerTurn) {

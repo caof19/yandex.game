@@ -9,6 +9,16 @@ import { useNavigate } from "react-router-dom";
 export const SingIn = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const [yandexAppId, setYandexAppId] = useState("");
+
+    useEffect(() => {
+        API.get("/oauth/yandex/service-id?redirect_uri=" + REDIRECT_URI).then(
+            ({ data }) => {
+                const url = OAUTH_URL.replace("%CLIENT_ID%", data.service_id);
+                setYandexAppId(url);
+            },
+        );
+    }, []);
 
     const handleFinish = async (val) => {
         API.post("/auth/signin", val)
@@ -88,6 +98,18 @@ export const SingIn = () => {
                     >
                         Войти
                     </Button>
+                </Form.Item>
+                <Form.Item>
+                    <Flex alignItems="center" justify="center">
+                        <Button
+                            color="primary"
+                            variant="solid"
+                            href={yandexAppId}
+                            className={style.ya_btn}
+                        >
+                            Или авторизация через яндекс
+                        </Button>
+                    </Flex>
                 </Form.Item>
             </Form>
         </div>
