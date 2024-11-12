@@ -13,6 +13,7 @@ import { StartPage } from "./StartPage";
 
 import { withAuthCheck } from "@/service/routes/withAuthCheck";
 import { Topic } from "./Topic";
+import { Login } from "@/pages/Login/Loign";
 
 const GameWithAuthCheck = withAuthCheck(Game);
 const ForumWithAuthCheck = withAuthCheck(Forum);
@@ -22,6 +23,7 @@ const TopicWithAuthCheck = withAuthCheck(Topic);
 export const Routes = () => {
     return (
         <Switch>
+            <Route path={routes.login.path} component={Login} />
             <Route path={routes.startPage.path} component={StartPage} />
             <Route path={routes.clientError.path} component={ClientError} />
             <Route path={routes.serverError.path} component={ServerError} />
