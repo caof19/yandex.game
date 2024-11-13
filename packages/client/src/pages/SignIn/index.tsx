@@ -1,14 +1,26 @@
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button, message, Flex } from "antd";
 import { useHistory } from "react-router-dom";
 import style from "./SignIn.module.css";
 import { useAppDispatch } from "@/service/hook";
 import { login } from "@/store/slice/auth";
 import { API } from "@/service";
 import { User } from "@/service/api/user";
+import { useEffect, useState } from "react";
+import { OAUTH_URL, REDIRECT_URI } from "@/service/const";
 
 export const SingIn = () => {
     const history = useHistory();
     const dispatch = useAppDispatch();
+    const [yandexAppId, setYandexAppId] = useState("");
+
+    useEffect(() => {
+        API.get("/oauth/yandex/service-id?redirect_uri=" + REDIRECT_URI).then(
+            ({ data }) => {
+                const url = OAUTH_URL.replace("%CLIENT_ID%", data.service_id);
+                setYandexAppId(url);
+            },
+        );
+    }, []);
 
     const handleFinish = async (val) => {
         API.post("/auth/signin", val)
@@ -88,6 +100,18 @@ export const SingIn = () => {
                     >
                         Войти
                     </Button>
+                </Form.Item>
+                <Form.Item>
+                    <Flex alignItems="center" justify="center">
+                        <Button
+                            color="primary"
+                            variant="solid"
+                            href={yandexAppId}
+                            className={style.ya_btn}
+                        >
+                            Или авторизация через яндекс
+                        </Button>
+                    </Flex>
                 </Form.Item>
             </Form>
         </div>

@@ -8,3 +8,7 @@ export const useAuth = () => {
     const { isLogged } = useAppSelector((state) => state.auth);
     return isLogged;
 };
+export const useUsername = () => {
+    const login = useAppSelector((state) => state.auth.user?.login);
+    return login;
+};
