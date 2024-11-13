@@ -3,19 +3,19 @@
 exports[`Список тем форума рендерится без ошибок 1`] = `
 <div>
   <div
-    class="ant-list ant-list-split css-dev-only-do-not-override-1uq9j6g"
+    class="ant-list ant-list-split css-dev-only-do-not-override-tpassh"
   >
     <div
-      class="ant-spin-nested-loading css-dev-only-do-not-override-1uq9j6g"
+      class="ant-spin-nested-loading css-dev-only-do-not-override-tpassh"
     >
-      <div
+      <divg
         class="ant-spin-container"
       >
         <li
           class="ant-list-item"
         >
           <div
-            class="ant-card ant-card-bordered css-dev-only-do-not-override-1uq9j6g"
+            class="ant-card ant-card-bordered css-dev-only-do-not-override-tpassh"
           >
             <div
               class="ant-card-head"
@@ -43,15 +43,15 @@ exports[`Список тем форума рендерится без ошибо
               class="ant-card-body"
             >
               <div
-                class="ant-flex css-dev-only-do-not-override-1uq9j6g ant-flex-justify-space-between"
+                class="ant-flex css-dev-only-do-not-override-tpassh ant-flex-justify-space-between"
               >
                 <span
-                  class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                  class="ant-typography css-dev-only-do-not-override-tpassh"
                 >
                   heard functions russia vb assigned
                 </span>
                 <span
-                  class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                  class="ant-typography css-dev-only-do-not-override-tpassh"
                 >
                   Sat Apr 01 2017
                 </span>

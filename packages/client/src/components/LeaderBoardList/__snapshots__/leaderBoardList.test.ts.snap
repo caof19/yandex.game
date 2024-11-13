@@ -3,10 +3,10 @@
 exports[`Лидерборд Лидерборд рендерится без ошибок 1`] = `
 <div>
   <div
-    class="ant-list ant-list-split css-dev-only-do-not-override-1uq9j6g"
+    class="ant-list ant-list-split css-dev-only-do-not-override-tpassh"
   >
     <div
-      class="ant-spin-nested-loading css-dev-only-do-not-override-1uq9j6g"
+      class="ant-spin-nested-loading css-dev-only-do-not-override-tpassh"
     >
       <div
         class="ant-spin-container"
@@ -15,17 +15,17 @@ exports[`Лидерборд Лидерборд рендерится без ош�
           class="ant-list-item"
         >
           <div
-            class="ant-flex css-dev-only-do-not-override-1uq9j6g"
+            class="ant-flex css-dev-only-do-not-override-tpassh"
             style="gap: 16px;"
           >
             <div
-              class="ant-space css-dev-only-do-not-override-1uq9j6g ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
+              class="ant-space css-dev-only-do-not-override-tpassh ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
             >
               <div
                 class="ant-space-item"
               >
                 <span
-                  class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                  class="ant-typography css-dev-only-do-not-override-tpassh"
                 >
                   1
                 </span>
@@ -34,14 +34,14 @@ exports[`Лидерборд Лидерборд рендерится без ош�
                 class="ant-space-item"
               >
                 <span
-                  class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                  class="ant-typography css-dev-only-do-not-override-tpassh"
                 >
                   user001
                 </span>
               </div>
             </div>
             <span
-              class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+              class="ant-typography css-dev-only-do-not-override-tpassh"
             >
               1000
             </span>
