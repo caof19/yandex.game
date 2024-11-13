@@ -8,7 +8,7 @@ exports[`Список тем форума рендерится без ошибо
     <div
       class="ant-spin-nested-loading css-dev-only-do-not-override-tpassh"
     >
-      <divg
+      <div
         class="ant-spin-container"
       >
         <li
