@@ -49,3 +49,11 @@
     margin-right: auto;
     font-weight: 700;
 }
+.ya_btn {
+    color: #ffffff;
+    background-color: #000000;
+    text-transform: uppercase;
+    font-size: 20px;
+    min-height: 50px;
+    font-weight: 700;
+}

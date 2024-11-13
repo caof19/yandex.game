@@ -1,10 +1,12 @@
 .leaderboard-row {
     display: flex;
-    font-size: 24px;
-    gap: 8px;
+    margin: 8px 0;
 }
 .leaderboard-row-inner {
     justify-content: space-between;
     width: 100%;
     align-items: center;
+}
+.leaderboard-row-inner span {
+    font-size: 16px;
 }

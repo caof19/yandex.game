@@ -34,6 +34,9 @@ export const relativeRoutes = {
     startPage: {
         path: "/main",
     },
+    login: {
+        path: "/login",
+    },
 };
 
 type TRouteKeys = keyof typeof relativeRoutes;
