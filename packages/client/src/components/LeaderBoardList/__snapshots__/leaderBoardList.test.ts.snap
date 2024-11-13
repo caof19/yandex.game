@@ -19,23 +19,23 @@ exports[`Лидерборд Лидерборд рендерится без ош�
             style="gap: 32px;"
           >
             <div
-                class="ant-flex css-dev-only-do-not-override-tpassh ant-flex-align-center"
-                style="gap: 16px;"
+              class="ant-flex css-dev-only-do-not-override-tpassh ant-flex-align-center"
+              style="gap: 16px;"
+            >
+              <span
+                class="ant-typography css-dev-only-do-not-override-tpassh"
               >
-                <span
-                  class="ant-typography css-dev-only-do-not-override-tpassh"
-                >
-                  <strong>
-                    1
-                  </strong>
-                </span>
-                <span
-                  class="ant-typography css-dev-only-do-not-override-tpassh"
-                >
-                    <strong>
-                      user001
-                    </strong>
-                </span>
+                <strong>
+                  1
+                </strong>
+              </span>
+              <span
+                class="ant-typography css-dev-only-do-not-override-tpassh"
+              >
+                <strong>
+                  user001
+                </strong>
+              </span>
             </div>
             <span
               class="ant-typography ant-typography-warning css-dev-only-do-not-override-tpassh"
