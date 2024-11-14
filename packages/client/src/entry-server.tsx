@@ -10,7 +10,7 @@ import {
 import { configureStore } from "@reduxjs/toolkit";
 
 import { createFetchRequest } from "./entry-server.utils";
-import { reducer } from "./store";
+import { reducer } from "./store/index";
 import "./index.css";
 import { routers } from "./pages";
 
