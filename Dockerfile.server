@@ -1,4 +1,4 @@
-ARG NODE_VERSION=18
+ARG NODE_VERSION=20
 ARG SERVER_PORT=3001
 
 FROM node:$NODE_VERSION-buster as base
@@ -8,7 +8,11 @@ WORKDIR /app
 FROM base as builder
 
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN chmod -R 777 /app
+COPY install.sh /app/install.sh
+
+RUN node -v
+RUN chmod +x /app/install.sh && /app/install.sh
 
 COPY . .
 
