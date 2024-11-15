@@ -1,7 +1,7 @@
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import FillerGame from "./filler";
 import { Provider } from "react-redux";
-import store from "@/store";
+import { store } from "../../store";
 
 describe("Компонент игры", () => {
     let fillerGame: RenderResult;

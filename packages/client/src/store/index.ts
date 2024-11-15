@@ -17,7 +17,7 @@ declare global {
 
 export const reducer = combineReducers({ auth: authSlice, user: userReducer });
 
-const store = configureStore({
+export const store = configureStore({
     reducer,
     preloadedState:
         typeof window === "undefined" ? undefined : window.APP_INITIAL_STATE,
@@ -29,5 +29,3 @@ export type AppDispatch = typeof store.dispatch;
 export const useDispatch: () => AppDispatch = useDispatchBase;
 export const useSelector: TypedUseSelectorHook<RootState> = useSelectorBase;
 export const useStore: () => typeof store = useStoreBase;
-
-export default store;
