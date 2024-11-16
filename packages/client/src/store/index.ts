@@ -6,7 +6,6 @@ import {
 } from "react-redux";
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slice/user/userSlice";
 import authSlice from "./slice/auth";
 
 declare global {
