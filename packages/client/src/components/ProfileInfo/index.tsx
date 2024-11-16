@@ -1,6 +1,6 @@
 import { User } from "@/service/api/user";
 import { useAppSelector } from "@/service/hook";
-import { Button, Form, Input, Space } from "antd";
+import { Button, Form, Input, Space } from "antd/lib";
 
 // TODO: Вынести это
 export const InputRegexps = {

@@ -1,5 +1,8 @@
-import { FullscreenExitOutlined, FullscreenOutlined } from "@ant-design/icons";
-import { Flex, FloatButton } from "antd";
+import {
+    FullscreenExitOutlined,
+    FullscreenOutlined,
+} from "@ant-design/icons/lib";
+import { Flex, FloatButton } from "antd/lib";
 import { FC, useRef, useState } from "react";
 
 export const withFullscreenApi = <T extends object>(WrappedBlock: FC<T>) => {

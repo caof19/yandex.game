@@ -6,8 +6,8 @@ import {
     changePassword,
     changeProfile,
 } from "@/service/api/user";
-import { Button, Flex, Upload, message } from "antd";
-import { RcFile } from "antd/es/upload";
+import { Button, Flex, Upload, message } from "antd/lib";
+import { RcFile } from "antd/lib/upload";
 import { useState } from "react";
 import styles from "./style.module.css";
 

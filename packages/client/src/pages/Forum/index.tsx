@@ -8,12 +8,12 @@ import {
     Modal,
     Space,
     Typography,
-} from "antd";
+} from "antd/lib";
 import { Topics, TTopic } from "@/components/Topics";
 import { testData } from "./testData";
 import styles from "./styles.module.css";
 import { Loader } from "@/components";
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons/lib";
 
 export type TCreateTopicFormField = {
     title: string;

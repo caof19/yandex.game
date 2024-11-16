@@ -1,4 +1,4 @@
-import { Divider, Flex, Space } from "antd";
+import { Divider, Flex, Space } from "antd/lib";
 import { Link } from "react-router-dom";
 import { relativeRoutes } from "../../service/routes/routeMap";
 import { LeaderBoardList, Loader } from "@/components";

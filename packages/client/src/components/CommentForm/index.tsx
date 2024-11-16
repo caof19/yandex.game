@@ -1,5 +1,5 @@
-import { Button, Flex, Form } from "antd";
-import TextArea from "antd/es/input/TextArea";
+import { Button, Flex, Form } from "antd/lib";
+import TextArea from "antd/lib/input/TextArea";
 import { ChangeEvent, useState } from "react";
 
 export type TCommentFormField = {

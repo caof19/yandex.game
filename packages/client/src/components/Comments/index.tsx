@@ -1,6 +1,6 @@
 import { convertDate } from "../../utils/converDate";
 import styles from "./styles.module.css";
-import { Card, Flex, List, Typography } from "antd";
+import { Card, Flex, List, Typography } from "antd/lib";
 
 export type TComment = {
     author: string;

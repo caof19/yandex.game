@@ -1,8 +1,8 @@
 import React from "react";
-import { Form, Input, Button, message } from "antd";
-import { useHistory } from "react-router-dom";
+import { Form, Input, Button, message } from "antd/lib";
+import { useNavigate } from "react-router-dom";
 import style from "./SignUp.module.css";
-import { API } from "@/service";
+import { API, routes } from "@/service";
 
 const validationSchema = {
     upperFirstLetter: new RegExp(/^[A-ZА-Я]/),
@@ -106,7 +106,7 @@ const userFields = [
 ];
 
 export const SingUp: React.FC = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleFinish = (val) => {
         API.post("/auth/signup", val)
@@ -116,7 +116,7 @@ export const SingUp: React.FC = () => {
                     content: "Регистрация прошла успешно!",
                 });
 
-                history.push("/auth/sign-in");
+                navigate(routes.signIn.path);
             })
             .catch((res) => {
                 const errText = res.response?.data?.reason;
