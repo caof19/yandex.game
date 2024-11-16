@@ -14,7 +14,7 @@ declare global {
     }
 }
 
-export const reducer = combineReducers({ auth: authSlice, user: userReducer });
+export const reducer = combineReducers({ auth: authSlice });
 
 export const store = configureStore({
     reducer,
