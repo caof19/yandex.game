@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../index";
-import { SERVER_HOST } from "../../../constants";
+import { SERVER_HOST } from "@/SERVER_HOST";
 
 interface User {
     name: string;
