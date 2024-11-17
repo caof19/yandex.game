@@ -18,7 +18,8 @@ export const COLORS_TO_IMAGE: TColorsToImage = {
     "#FF1493": pinkSprite,
 };
 
-export const REDIRECT_URI = location.protocol + "//" + location.host + "/login";
+export const REDIRECT_URI =
+    process.env.YA_REDIRECT_URI || "http://localhost:3000/login";
 
 export const OAUTH_URL =
     "https://oauth.yandex.ru/authorize?response_type=code&client_id=%CLIENT_ID%&redirect_uri=" +

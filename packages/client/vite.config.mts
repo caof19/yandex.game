@@ -27,7 +27,7 @@ export default defineConfig({
             input: {
                 sw: path.resolve(
                     __dirname,
-                    "/src/service/service-worker/sw.ts",
+                    "src/service/service-worker/sw.ts",
                 ),
                 index: path.resolve(__dirname, "index.html"),
             },

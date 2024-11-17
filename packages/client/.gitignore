@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 # __snapshots__/
+
+server/*.js
+server/*.d.ts
+*.tsbuildinfo
