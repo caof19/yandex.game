@@ -19,7 +19,7 @@ export const COLORS_TO_IMAGE: TColorsToImage = {
 };
 
 export const REDIRECT_URI =
-    process.env.YA_REDIRECT_URI || "http://localhost:3000/login";
+    __YA_REDIRECT_URI__ || "http://localhost:3000/login";
 
 export const OAUTH_URL =
     "https://oauth.yandex.ru/authorize?response_type=code&client_id=%CLIENT_ID%&redirect_uri=" +

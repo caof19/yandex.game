@@ -52,6 +52,9 @@ export default defineConfig({
         __INTERNAL_SERVER_URL__: JSON.stringify(
             process.env.INTERNAL_SERVER_URL,
         ),
+        __YA_REDIRECT_URI__: JSON.stringify(
+            process.env.YA_REDIRECT_URI
+        )
     },
     plugins: [react()],
 });
