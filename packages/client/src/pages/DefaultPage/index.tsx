@@ -1,8 +1,9 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "./DefaultPage.module.css";
+import { routes } from "@/service";
 
 export const DefaultPage = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     return (
         <div className={style.wrapper}>
@@ -11,7 +12,7 @@ export const DefaultPage = () => {
             <button
                 className={style.button}
                 onClick={() => {
-                    history.push("/auth/sign-in"); // Укажите путь к целевой странице
+                    navigate(routes.signIn.path);
                 }}
             >
                 Вернуться на главную

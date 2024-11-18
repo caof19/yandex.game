@@ -1,5 +1,5 @@
 import { ChangePasswordArgs } from "@/service/api/user";
-import { Button, Form, Input, Space } from "antd";
+import { Button, Form, Input, Space } from "antd/lib";
 import { InputRegexps } from "../ProfileInfo";
 
 type ChangePasswordFormProps = {

@@ -1,7 +1,7 @@
-import { Button, Divider, Flex, Typography } from "antd";
+import { Button, Divider, Flex, Typography } from "antd/lib";
 import React, { Dispatch, SetStateAction } from "react";
 import styles from "./startScreen.module.css";
-import { Content } from "antd/es/layout/layout";
+import { Content } from "antd/lib/layout/layout";
 import { NavLink } from "react-router-dom";
 import { GameState } from ".";
 

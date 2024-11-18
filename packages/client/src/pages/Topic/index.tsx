@@ -2,7 +2,15 @@ import { useEffect, useState } from "react";
 import peachIcon from "../../assets/svg/peach.svg";
 import { TTopic } from "../../components/Topics";
 import { Link, useParams } from "react-router-dom";
-import { Card, Divider, Flex, Layout, Space, Typography } from "antd";
+import {
+    Button,
+    Card,
+    Divider,
+    Flex,
+    Layout,
+    Space,
+    Typography,
+} from "antd/lib";
 import { relativeRoutes } from "../../service/routes/routeMap";
 import styles from "./styles.module.css";
 import { testComments, testTopics } from "./testData";
@@ -12,7 +20,7 @@ import { CommentForm } from "../../components/CommentForm";
 import { Loader } from "../../components/Loader";
 
 export const Topic = () => {
-    const params: { id: string } = useParams();
+    const params = useParams<{ id: string }>();
     const isAuthenticated = false;
     const [comments, setComments] = useState<Array<TComment> | undefined>();
     const [topic, setTopic] = useState<TTopic | undefined>();
@@ -49,29 +57,32 @@ export const Topic = () => {
                         </Space>
                         <Space align="center">
                             {isAuthenticated ? (
-                                <Link
-                                    to={relativeRoutes.profile.path}
-                                    component={Typography.Link}
-                                    className={styles.link}
-                                >
-                                    Профиль
-                                </Link>
+                                <Button type="link">
+                                    <Link
+                                        to={relativeRoutes.profile.path}
+                                        className={styles.link}
+                                    >
+                                        Профиль
+                                    </Link>
+                                </Button>
                             ) : (
                                 <>
-                                    <Link
-                                        to={relativeRoutes.singUp.path}
-                                        component={Typography.Link}
-                                        className={styles.link}
-                                    >
-                                        Регистрация
-                                    </Link>
-                                    <Link
-                                        to={relativeRoutes.signIn.path}
-                                        component={Typography.Link}
-                                        className={styles.link}
-                                    >
-                                        Вход
-                                    </Link>
+                                    <Button type="link">
+                                        <Link
+                                            to={relativeRoutes.singUp.path}
+                                            className={styles.link}
+                                        >
+                                            Регистрация
+                                        </Link>
+                                    </Button>
+                                    <Button type="link">
+                                        <Link
+                                            to={relativeRoutes.signIn.path}
+                                            className={styles.link}
+                                        >
+                                            Вход
+                                        </Link>
+                                    </Button>
                                 </>
                             )}
                         </Space>
