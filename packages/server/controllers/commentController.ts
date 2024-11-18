@@ -20,9 +20,9 @@ export const createComment = async (req: Request, res: Response) => {
 };
 
 export const getAllComments = async (req: Request, res: Response) => {
-    const { topic_id } = req.params;
+    const { id } = req.params;
     const comments = await Comment.findAll({
-        where: { id: topic_id },
+        where: { id },
         include: [Reply],
     });
     if (comments) res.status(200).json(comments);

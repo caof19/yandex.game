@@ -8,7 +8,7 @@ import { Router } from "express";
 const replyRouter = Router();
 
 replyRouter.put("/", createReply);
-replyRouter.delete(":id", deleteReply);
-replyRouter.patch(":id", updateReply);
+replyRouter.delete("/:id", deleteReply);
+replyRouter.patch("/:id", updateReply);
 
 export { replyRouter };
