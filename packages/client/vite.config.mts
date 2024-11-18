@@ -25,10 +25,7 @@ export default defineConfig({
         outDir: path.join(__dirname, "dist/client"),
         rollupOptions: {
             input: {
-                sw: path.resolve(
-                    __dirname,
-                    "src/service/service-worker/sw.ts",
-                ),
+                sw: path.resolve(__dirname, "src/service/service-worker/sw.ts"),
                 index: path.resolve(__dirname, "index.html"),
             },
             output: {
@@ -52,9 +49,7 @@ export default defineConfig({
         __INTERNAL_SERVER_URL__: JSON.stringify(
             process.env.INTERNAL_SERVER_URL,
         ),
-        __YA_REDIRECT_URI__: JSON.stringify(
-            process.env.YA_REDIRECT_URI
-        )
+        __YA_REDIRECT_URI__: JSON.stringify(process.env.YA_REDIRECT_URI),
     },
     plugins: [react()],
 });
