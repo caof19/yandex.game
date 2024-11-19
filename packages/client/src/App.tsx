@@ -1,17 +1,27 @@
-import { Router } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
-import { history } from "./service";
-import { ConfigProvider, theme } from "antd";
-import { Routes } from "./pages";
+import { ConfigProvider, theme } from "antd/lib";
 import { RootErrorBoundary } from "./components";
-import { Layout } from "./components/Layout";
+import { Router } from "@remix-run/router";
+
+import { store } from "./store";
+import { Provider } from "react-redux";
+import { routers } from "./pages";
+
+// TODO: Вынести от сюда
+let browserRouter: Router;
+if (typeof window !== undefined) {
+    browserRouter = createBrowserRouter(routers);
+}
+
+export const router = browserRouter;
 
 function App() {
     const isDark = false;
 
     return (
-        <RootErrorBoundary>
-            <Router history={history}>
+        <Provider store={store}>
+            <RootErrorBoundary>
                 <ConfigProvider
                     theme={{
                         algorithm: isDark
@@ -19,12 +29,10 @@ function App() {
                             : theme.compactAlgorithm,
                     }}
                 >
-                    <Layout>
-                        <Routes />
-                    </Layout>
+                    <RouterProvider router={router} />
                 </ConfigProvider>
-            </Router>
-        </RootErrorBoundary>
+            </RootErrorBoundary>
+        </Provider>
     );
 }
 

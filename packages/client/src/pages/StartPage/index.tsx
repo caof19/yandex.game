@@ -1,16 +1,22 @@
-import React from "react";
-import { Carousel, Divider, Flex, Image, Space, Typography } from "antd";
+import {
+    Button,
+    Carousel,
+    Divider,
+    Flex,
+    Image,
+    Space,
+    Typography,
+} from "antd/lib";
 import fillerImageFirst from "../../assets/images/filler.jpg";
 import fillerImageSecond from "../../assets/images/filler2.jpg";
 import leaderboardImage from "../../assets/images/leaderboard.png";
 import { data } from "./data";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { relativeRoutes } from "../../service/routes/routeMap";
 import styles from "./styles.module.css";
 
 export const StartPage = () => {
     const { Text } = Typography;
-    const history = useHistory();
     return (
         <Flex vertical gap={16}>
             <Divider className={styles.divider}>Описание игры</Divider>
@@ -52,33 +58,27 @@ export const StartPage = () => {
                 </Space>
                 <Flex vertical align="center" justify="center" gap={32}>
                     <Text>{data.leaderboard}</Text>
-                    <Link
-                        to={relativeRoutes.leaderBoard.path}
-                        className={styles.link}
-                        component={Typography.Link}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            history.push("/leader-board"); // Укажите путь к целевой странице
-                        }}
-                    >
-                        Перейти
-                    </Link>
+                    <Button type="link">
+                        <Link
+                            to={relativeRoutes.leaderBoard.path}
+                            className={styles.link}
+                        >
+                            Перейти
+                        </Link>
+                    </Button>
                 </Flex>
             </Flex>
             <Divider className={styles.divider}>Форум</Divider>
             <Flex vertical align="center" justify="center" gap={32}>
                 <Text>{data.forum}</Text>
-                <Link
-                    to={relativeRoutes.forum.path}
-                    className={styles.link}
-                    component={Typography.Link}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        history.push("/forum");
-                    }}
-                >
-                    Перейти
-                </Link>
+                <Button type="link">
+                    <Link
+                        to={relativeRoutes.forum.path}
+                        className={styles.link}
+                    >
+                        Перейти
+                    </Link>
+                </Button>
             </Flex>
         </Flex>
     );

@@ -1,5 +1,5 @@
-import { Result, ResultProps } from "antd";
-import { ResultStatusType } from "antd/es/result";
+import { Result, ResultProps } from "antd/lib";
+import { ResultStatusType } from "antd/lib/result";
 import { AxiosError } from "axios";
 import { FallbackProps } from "react-error-boundary";
 

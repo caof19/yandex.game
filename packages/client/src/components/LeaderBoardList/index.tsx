@@ -1,4 +1,4 @@
-import { Flex, List, Space, Typography } from "antd";
+import { Flex, List, Typography } from "antd/lib";
 import styles from "./styles.module.css";
 import {
     GetAllLeaderoardResponse,
