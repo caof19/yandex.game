@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { LeaderBoardList } from ".";
-import store from "@/store";
+import { store } from "../../store";
 import { Provider } from "react-redux";
 const leaderBoardTestData = [
     {

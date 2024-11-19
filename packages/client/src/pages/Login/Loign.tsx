@@ -5,11 +5,11 @@ import { REDIRECT_URI } from "@/service/const";
 import { User } from "@/service/api/user";
 import { message } from "antd";
 import { login } from "@/store/slice/auth";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/service/hook";
 
 export const Login = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export const Login = () => {
 
                     dispatch(login(data));
 
-                    history.push("/play");
+                    navigate("/play");
                 })
                 .catch((res) => {
                     const errText = res.response?.data?.reason;
