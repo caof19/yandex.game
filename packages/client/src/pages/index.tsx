@@ -5,6 +5,7 @@ import { SingUp } from "./SignUp";
 import { Profile } from "./Profile";
 import { LeaderBoard } from "./LeaderBoard";
 import { Game } from "./Game";
+import { Login } from "./Login/Loign";
 import { Forum } from "./Forum";
 import { ServerError } from "./ServerError";
 import { ClientError } from "./ClientError";
@@ -30,7 +31,7 @@ export const routers: RouteObject[] = [
 
             { path: routes.clientError.path, Component: ClientError },
             { path: routes.serverError.path, Component: ServerError },
-
+            { path: routes.login.path, Component: Login },
             { path: routes.leaderBoard.path, Component: LeaderBoard },
 
             { path: routes.signIn.path, Component: SingIn },
