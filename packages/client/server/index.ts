@@ -9,7 +9,7 @@ import path from "path";
 import fs from "fs/promises";
 import { ViteDevServer, createServer as createViteServer } from "vite";
 
-const port = process.env.SERVER_PORT || 3001;
+const port = process.env.CLIENT_PORT || 3000;
 const clientPath = path.join(__dirname, "..");
 const isDev = process.env.NODE_ENV === "development";
 
