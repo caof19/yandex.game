@@ -17,7 +17,7 @@ export interface IReaction {
     topic_id: number;
 }
 
-@Table
+@Table({ timestamps: false })
 export class Reaction extends Model<IReaction> {
     @AutoIncrement
     @PrimaryKey
