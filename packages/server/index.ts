@@ -32,8 +32,6 @@ app.use("/comments", commentRouter);
 app.use("/replies", replyRouter);
 app.use("/reactions", reactionRouter);
 
-createClientAndConnect();
-
 app.get("/user", (_, res) => {
     res.json({ name: "</script>Степа", secondName: "Степанов" });
 });
