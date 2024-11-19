@@ -23,13 +23,6 @@ const app = express();
 app.use(cors());
 app.use(xssShield());
 const port = Number(process.env.SERVER_PORT) || 3001;
-
-createClientAndConnect();
-
-app.get("/", (_, res) => {
-    res.json("👋 Howdy from the server :)");
-});
-
 sequelize.addModels([Comment, Topic, Reply, Reaction]);
 sequelize.sync({ force: true });
 app.use(getBody);
@@ -38,6 +31,16 @@ app.use("/topics", topicRouter);
 app.use("/comments", commentRouter);
 app.use("/replies", replyRouter);
 app.use("/reactions", reactionRouter);
+
+createClientAndConnect();
+
+app.get("/user", (_, res) => {
+    res.json({ name: "</script>Степа", secondName: "Степанов" });
+});
+
+app.get("/", (_, res) => {
+    res.json("👋 Howdy from the server :)");
+});
 
 app.listen(port, () => {
     console.log(`  ➜ 🎸 Server is listening on port: ${port}`);

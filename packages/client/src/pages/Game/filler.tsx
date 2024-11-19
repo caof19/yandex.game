@@ -1,4 +1,4 @@
-import { Button } from "antd/lib";
+import { Button, notification } from "antd";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useFillerCanvas from "./canvas/useCanvas";
 import { GameProps } from ".";
@@ -12,6 +12,7 @@ import {
 } from "./gameHelpers";
 import { COLORS_TO_IMAGE } from "@/service/const";
 import { withFullscreenApi } from "@/service/hocs/withFullscreenApi";
+import { getWeather } from "./weather";
 import { addUserToLeaderboard } from "@/service/api/leaderboard";
 import { useUsername } from "@/service/hook";
 
@@ -28,7 +29,8 @@ const FillerGame = (props: GameProps) => {
     const { params, setGameState, restartGame } = props;
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const { grid, setGrid } = useFillerCanvas(ROWS, COLS, canvasRef);
-
+    const [notificationInstance, contextHolder] =
+        notification.useNotification();
     const [playerColor, setCurrentColor] = useState<string>(
         getCell(playerStart[0], playerStart[1], grid).color,
     );
@@ -147,6 +149,7 @@ const FillerGame = (props: GameProps) => {
 
     return (
         <div>
+            {contextHolder}
             <div>{isPlayerTurn ? "Ход игрока" : "Ход компьютера"}</div>
             <canvas
                 ref={canvasRef}
@@ -180,7 +183,12 @@ const FillerGame = (props: GameProps) => {
                 <p>Захваченные ячейки игрока: {playerCells}</p>
                 <p>Захваченные ячейки компьютера: {computerCells}</p>
             </div>
-            <Button onClick={restartGame}>Начать заново</Button>
+            <Button style={{ marginRight: "10px" }} onClick={restartGame}>
+                Начать заново
+            </Button>
+            <Button onClick={() => getWeather(notificationInstance)}>
+                Узнать погоду
+            </Button>
         </div>
     );
 };
