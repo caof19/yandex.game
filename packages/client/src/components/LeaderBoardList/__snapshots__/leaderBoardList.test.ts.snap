@@ -3,10 +3,10 @@
 exports[`Лидерборд Лидерборд рендерится без ошибок 1`] = `
 <div>
   <div
-    class="ant-list ant-list-split css-dev-only-do-not-override-1uq9j6g"
+    class="ant-list ant-list-split css-dev-only-do-not-override-49qm"
   >
     <div
-      class="ant-spin-nested-loading css-dev-only-do-not-override-1uq9j6g"
+      class="ant-spin-nested-loading css-dev-only-do-not-override-49qm"
     >
       <div
         class="ant-spin-container"
@@ -15,22 +15,22 @@ exports[`Лидерборд Лидерборд рендерится без ош�
           class="ant-list-item"
         >
           <div
-            class="ant-flex css-dev-only-do-not-override-1uq9j6g ant-flex-align-center"
+            class="ant-flex css-dev-only-do-not-override-49qm ant-flex-align-center"
             style="gap: 32px;"
           >
             <div
-              class="ant-flex css-dev-only-do-not-override-1uq9j6g ant-flex-align-center"
+              class="ant-flex css-dev-only-do-not-override-49qm ant-flex-align-center"
               style="gap: 16px;"
             >
               <span
-                class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                class="ant-typography css-dev-only-do-not-override-49qm"
               >
                 <strong>
                   1
                 </strong>
               </span>
               <span
-                class="ant-typography css-dev-only-do-not-override-1uq9j6g"
+                class="ant-typography css-dev-only-do-not-override-49qm"
               >
                 <strong>
                   user001
@@ -38,7 +38,7 @@ exports[`Лидерборд Лидерборд рендерится без ош�
               </span>
             </div>
             <span
-              class="ant-typography ant-typography-warning css-dev-only-do-not-override-1uq9j6g"
+              class="ant-typography ant-typography-warning css-dev-only-do-not-override-49qm"
             >
               1000
             </span>
