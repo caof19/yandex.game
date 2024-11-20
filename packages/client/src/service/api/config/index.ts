@@ -8,6 +8,7 @@ export const yandexConfig: CreateAxiosDefaults = {
 };
 
 export const baseConfig: CreateAxiosDefaults = {
+    baseURL: "http://localhost:3001",
     withCredentials: true,
     headers: { "Content-type": "application/json" },
 };

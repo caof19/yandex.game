@@ -18,7 +18,7 @@ import xssShield from "xss-shield/build/main/lib/xssShield";
 
 dotenv.config({ path: "../../.env" });
 const app = express();
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(xssShield());
 const port = Number(process.env.SERVER_PORT) || 3001;
 

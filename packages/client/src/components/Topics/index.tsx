@@ -73,6 +73,12 @@ const Topic = (props: TTopicProps) => {
                     </Link>
                 }
             >
+                <Flex justify="space-between" style={{ paddingBottom: "10px" }}>
+                    <Typography.Text>{text}</Typography.Text>
+                    <Typography.Text>
+                        {convertDate(props.topic.createdAt)}
+                    </Typography.Text>
+                </Flex>
                 <Modal
                     title="Редактировать топик"
                     open={isModalOpen}
@@ -149,12 +155,6 @@ const Topic = (props: TTopicProps) => {
                         />
                     </>
                 )}
-                <Flex justify="space-between">
-                    <Typography.Text>{text}</Typography.Text>
-                    <Typography.Text>
-                        {convertDate(props.topic.createdAt)}
-                    </Typography.Text>
-                </Flex>
             </Card>
         </List.Item>
     );
