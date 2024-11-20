@@ -1,14 +1,14 @@
-import { API } from "..";
+import { YandexApi } from "..";
 import { ChangePasswordArgs, ChangeProfileArgs } from "./types";
 
 export function changePassword(data: ChangePasswordArgs) {
-    return API.put("/user/password", data);
+    return YandexApi.put("/user/password", data);
 }
 
 export function changeProfile(data: ChangeProfileArgs) {
-    return API.put("/user/profile", data);
+    return YandexApi.put("/user/profile", data);
 }
 
 export function changeAvatar(data: FormData) {
-    return API.put("/user/profile/avatar", data);
+    return YandexApi.put("/user/profile/avatar", data);
 }

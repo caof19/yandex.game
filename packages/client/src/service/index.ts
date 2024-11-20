@@ -1,2 +1,2 @@
 export { routes } from "./routes";
-export { API } from "./api";
+export { YandexApi, BaseApi } from "./api";

@@ -1,12 +1,12 @@
 import { AxiosResponse } from "axios";
-import { API } from "..";
+import { YandexApi } from "..";
 import {
     GetAllLeaderboardRequestArgs,
     GetAllLeaderoardResponse,
 } from "./types";
 
 export const getLeaderboard = (data: GetAllLeaderboardRequestArgs) => {
-    return API.post("/leaderboard/all", data);
+    return YandexApi.post("/leaderboard/all", data);
 };
 export const getUserScore = async (username: string) => {
     let userScore = 0;
@@ -31,5 +31,5 @@ export const addUserToLeaderboard = async (username: string) => {
         },
         ratingFieldName: "peachFillerScore",
     };
-    return API.post("/leaderboard", requestData);
+    return YandexApi.post("/leaderboard", requestData);
 };

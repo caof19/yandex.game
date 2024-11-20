@@ -18,19 +18,20 @@ import xssShield from "xss-shield/build/main/lib/xssShield";
 import { reactionRouter } from "./routes/reactionRoutes";
 import { Reaction } from "./models/Reaction.model";
 
-dotenv.config();
+dotenv.config({ path: "../../.env" });
 const app = express();
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(xssShield());
 const port = Number(process.env.SERVER_PORT) || 3001;
-sequelize.addModels([Comment, Topic, Reply, Reaction]);
-sequelize.sync({ force: true });
+const db = sequelize();
+db.addModels([Comment, Topic, Reply, Reaction]);
+db.sync({ force: true });
 app.use(getBody);
 app.use(checkAuth);
-app.use("/topics", topicRouter);
-app.use("/comments", commentRouter);
-app.use("/replies", replyRouter);
-app.use("/reactions", reactionRouter);
+app.use("/api/topics", topicRouter);
+app.use("/api/comments", commentRouter);
+app.use("/api/replies", replyRouter);
+app.use("/api/reactions", reactionRouter);
 
 app.get("/user", (_, res) => {
     res.json({ name: "</script>Степа", secondName: "Степанов" });

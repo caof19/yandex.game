@@ -14,7 +14,9 @@ export const createTopic = async (req: Request, res: Response) => {
 };
 
 export const getAllTopics = async (_req: Request, res: Response) => {
-    const topics = await Topic.findAll();
+    const topics = await Topic.findAll({
+        include: { all: true, nested: true },
+    });
     if (topics) res.status(200).json(topics);
     else
         res.status(500).json({
@@ -26,6 +28,7 @@ export const getTopicById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const topic = await Topic.findOne({
         where: { id: Number(id) },
+        include: { all: true, nested: true },
     });
     if (topic) res.status(200).json(topic);
     else

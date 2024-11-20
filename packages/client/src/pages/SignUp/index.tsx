@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Button, message } from "antd/lib";
 import { useNavigate } from "react-router-dom";
 import style from "./SignUp.module.css";
-import { API, routes } from "@/service";
+import { YandexApi, routes } from "@/service";
 
 const validationSchema = {
     upperFirstLetter: new RegExp(/^[A-ZА-Я]/),
@@ -109,7 +109,7 @@ export const SingUp: React.FC = () => {
     const navigate = useNavigate();
 
     const handleFinish = (val) => {
-        API.post("/auth/signup", val)
+        YandexApi.post("/auth/signup", val)
             .then(() => {
                 message.open({
                     type: "success",
