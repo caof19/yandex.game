@@ -17,14 +17,6 @@ export default defineConfig({
         headers: {
             "Service-Worker-Allowed": "/",
         },
-        proxy: {
-            "/api": {
-                target: process.env.EXTERNAL_SERVER_URL,
-                changeOrigin: true,
-                secure: false,
-                rewrite: (path) => path.replace(/^\/api/, ''),
-            },
-        },
     },
     ssr: {
         format: "cjs",

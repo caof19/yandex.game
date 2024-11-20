@@ -27,9 +27,9 @@ db.addModels([Comment, Topic, Reply]);
 db.sync({ force: true });
 app.use(getBody);
 app.use(checkAuth);
-app.use("/topics", topicRouter);
-app.use("/comments", commentRouter);
-app.use("/replies", replyRouter);
+app.use("/api/topics", topicRouter);
+app.use("/api/comments", commentRouter);
+app.use("/api/replies", replyRouter);
 
 app.get("/user", (_, res) => {
     res.json({ name: "</script>Степа", secondName: "Степанов" });
