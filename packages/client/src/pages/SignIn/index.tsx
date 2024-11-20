@@ -2,7 +2,7 @@ import { Form, Input, Button, message, Flex } from "antd/lib";
 import style from "./SignIn.module.css";
 import { useAppDispatch } from "@/service/hook";
 import { login } from "@/store/slice/auth";
-import { API } from "@/service";
+import { YandexApi } from "@/service";
 import { User } from "@/service/api/user";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -14,17 +14,17 @@ export const SingIn = () => {
     const [yandexAppId, setYandexAppId] = useState("");
 
     useEffect(() => {
-        API.get("/oauth/yandex/service-id?redirect_uri=" + REDIRECT_URI).then(
-            ({ data }) => {
-                const url = OAUTH_URL.replace("%CLIENT_ID%", data.service_id);
-                setYandexAppId(url);
-            },
-        );
+        YandexApi.get(
+            "/oauth/yandex/service-id?redirect_uri=" + REDIRECT_URI,
+        ).then(({ data }) => {
+            const url = OAUTH_URL.replace("%CLIENT_ID%", data.service_id);
+            setYandexAppId(url);
+        });
     }, []);
 
-    const handleFinish = async (val) => {
-        API.post("/auth/signin", val)
-            .then(() => API.get<User>("/auth/user"))
+    const handleFinish = async (val: unknown) => {
+        YandexApi.post("/auth/signin", val)
+            .then(() => YandexApi.get<User>("/auth/user"))
             .then(({ data }) => {
                 message.open({
                     type: "success",
@@ -42,7 +42,7 @@ export const SingIn = () => {
                     )
                 ) {
                     // TODO: Это переписать надо, вынести в redux thunks
-                    API.get<User>("/auth/user").then(({ data }) => {
+                    YandexApi.get<User>("/auth/user").then(({ data }) => {
                         message.open({
                             type: "success",
                             content: "Вы успешно авторизовались",
@@ -102,7 +102,7 @@ export const SingIn = () => {
                     </Button>
                 </Form.Item>
                 <Form.Item>
-                    <Flex alignItems="center" justify="center">
+                    <Flex align="center" justify="center">
                         <Button
                             color="primary"
                             variant="solid"

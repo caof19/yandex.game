@@ -16,14 +16,15 @@ import { replyRouter } from "./routes/replyRoutes";
 import { topicRouter } from "./routes/topicRoutes";
 import xssShield from "xss-shield/build/main/lib/xssShield";
 
-dotenv.config();
+dotenv.config({ path: "../../.env" });
 const app = express();
 app.use(cors());
 app.use(xssShield());
 const port = Number(process.env.SERVER_PORT) || 3001;
 
-sequelize.addModels([Comment, Topic, Reply]);
-sequelize.sync({ force: true });
+const db = sequelize();
+db.addModels([Comment, Topic, Reply]);
+db.sync({ force: true });
 app.use(getBody);
 app.use(checkAuth);
 app.use("/topics", topicRouter);

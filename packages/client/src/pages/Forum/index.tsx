@@ -10,35 +10,56 @@ import {
     Typography,
 } from "antd/lib";
 import { Topics, TTopic } from "@/components/Topics";
-import { testData } from "./testData";
 import styles from "./styles.module.css";
 import { Loader } from "@/components";
 import { PlusCircleOutlined } from "@ant-design/icons/lib";
+import { BaseApi } from "@/service/api";
+import { useUsername } from "@/service/hook";
 
 export type TCreateTopicFormField = {
     title: string;
-    message: string;
+    text: string;
+    author: string;
 };
 export const Forum = () => {
     const [topics, setTopics] = useState<TTopic[] | undefined>();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [form, setForm] = useState({ title: "", message: "" });
+    const username = useUsername()!;
+    const [form, setForm] = useState<TCreateTopicFormField>({
+        title: "",
+        text: "",
+        author: username,
+    });
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     };
     const submitHandler = () => {
-        // TODO
-        console.log(form);
+        BaseApi.put("/api/topics", form).then(() =>
+            BaseApi.get<TTopic[]>("/api/topics").then((res) => {
+                setForm({ ...form, text: "" });
+                setTopics(res.data);
+                setIsModalOpen(false);
+            }),
+        );
     };
     const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
     useEffect(() => {
-        setTimeout(() => {
-            setTopics(testData);
-        }, 2000);
+        BaseApi.get<TTopic[]>("/api/topics").then((res) => setTopics(res.data));
     }, []);
+
+    const [update, setUpdate] = useState(false);
+    useEffect(() => {
+        if (update) {
+            BaseApi.get<TTopic[]>("/api/topics").then((res) => {
+                setTopics(res.data);
+                setUpdate(false);
+            });
+        }
+    }, [update]);
+
     return (
         <Space direction="vertical">
             <Divider>
@@ -75,12 +96,12 @@ export const Forum = () => {
                             <Input
                                 placeholder="Введите тему топика"
                                 name="title"
-                                value={form.message}
+                                value={form.title}
                                 onChange={changeHandler}
                             />
                         </Form.Item>{" "}
                         <Form.Item<TCreateTopicFormField>
-                            name="message"
+                            name="text"
                             vertical
                             rules={[
                                 {
@@ -91,8 +112,8 @@ export const Forum = () => {
                         >
                             <Input
                                 placeholder="Введите сообщение"
-                                name="message"
-                                value={form.message}
+                                name="text"
+                                value={form.text}
                                 onChange={changeHandler}
                             />
                         </Form.Item>
@@ -100,7 +121,11 @@ export const Forum = () => {
                 </Form>
             </Modal>
             <Flex justify="center">
-                {topics ? <Topics topics={topics} /> : <Loader />}
+                {topics ? (
+                    <Topics topics={topics} setUpdate={setUpdate} />
+                ) : (
+                    <Loader />
+                )}
             </Flex>
         </Space>
     );

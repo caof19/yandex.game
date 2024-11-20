@@ -1,5 +1,5 @@
 import { ChangePasswordForm, ProfileAvatar, ProfileInfo } from "@/components";
-import { BASE_URL } from "@/service/api/config";
+import { Yandex_URL } from "@/service/api/config";
 import {
     ChangePasswordArgs,
     ChangeProfileArgs,
@@ -75,7 +75,7 @@ export function Profile() {
                         name="avatar"
                         withCredentials
                         method="PUT"
-                        action={`${BASE_URL}/user/profile/avatar`}
+                        action={`${Yandex_URL}/user/profile/avatar`}
                         beforeUpload={beforeUpload}
                     >
                         <Button>Изменить аватар</Button>

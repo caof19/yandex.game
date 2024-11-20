@@ -13,33 +13,33 @@ import {
 } from "antd/lib";
 import { relativeRoutes } from "../../service/routes/routeMap";
 import styles from "./styles.module.css";
-import { testComments, testTopics } from "./testData";
 import { convertDate } from "../../utils/converDate";
 import { Comments, TComment } from "../../components/Comments";
 import { CommentForm } from "../../components/CommentForm";
 import { Loader } from "../../components/Loader";
+import { BaseApi } from "@/service";
+import { useUsername } from "@/service/hook";
 
 export const Topic = () => {
     const params = useParams<{ id: string }>();
     const isAuthenticated = false;
-    const [comments, setComments] = useState<Array<TComment> | undefined>();
     const [topic, setTopic] = useState<TTopic | undefined>();
+    const username = useUsername();
     useEffect(() => {
-        setTimeout(() => {
-            setTopic(testTopics.find((data) => data.id === Number(params.id)));
-            setComments(testComments);
-        }, 2000);
+        BaseApi.get<TTopic>(`/api/topics/${params.id}`).then((res) =>
+            setTopic(res.data),
+        );
     }, []);
+
     const addCommentHandler = (comment: string) => {
-        setComments((prevState) => {
-            return [
-                ...(prevState as TComment[]),
-                {
-                    author: "me",
-                    date: new Date().toDateString(),
-                    text: comment,
-                },
-            ];
+        BaseApi.put("/api/comments", {
+            topic_id: params.id,
+            author: username,
+            text: comment,
+        }).then(() => {
+            BaseApi.get<TTopic>(`/api/topics/${params.id}`).then((res) =>
+                setTopic(res.data),
+            );
         });
     };
     return (
@@ -93,9 +93,7 @@ export const Topic = () => {
                                 title={`Тема: ${topic?.title}`}
                                 className={styles["topic-info"]}
                             >
-                                <Typography.Text>
-                                    {topic?.message}
-                                </Typography.Text>
+                                <Typography.Text>{topic?.text}</Typography.Text>
                                 <Divider />
                                 <Flex justify="space-between">
                                     <Typography.Text>
@@ -103,14 +101,25 @@ export const Topic = () => {
                                     </Typography.Text>
                                     <Typography.Text>
                                         {`Дата создания: ${convertDate(
-                                            topic?.createDate as string,
+                                            topic?.createdAt,
                                         )}`}
                                     </Typography.Text>
                                 </Flex>
                             </Card>
                             <Divider>Комментарии</Divider>
                             <Space direction="vertical">
-                                {comments && <Comments comments={comments} />}
+                                {topic.comments && (
+                                    <Comments
+                                        comments={topic.comments.sort(
+                                            (a, b) =>
+                                                new Date(
+                                                    a.createdAt,
+                                                ).getTime() -
+                                                new Date(b.createdAt).getTime(),
+                                        )}
+                                        topic_id={topic.id}
+                                    />
+                                )}
                                 <CommentForm onSubmit={addCommentHandler} />
                             </Space>
                         </Space>
