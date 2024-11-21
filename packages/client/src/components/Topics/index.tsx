@@ -10,6 +10,7 @@ import { TCreateTopicFormField } from "@/pages/Forum";
 import { Button } from "antd";
 import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import { EditOutlined } from "@ant-design/icons";
+import { Reaction } from "../../components/Reaction";
 
 export type TTopic = {
     id: number;
@@ -27,7 +28,6 @@ export type TTopicProps = {
     topic: TTopic;
     setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 const Topic = (props: TTopicProps) => {
     const [text, setText] = useState(props.topic.text);
     const [title, setTitle] = useState(props.topic.title);
@@ -155,6 +155,9 @@ const Topic = (props: TTopicProps) => {
                         />
                     </>
                 )}
+                <Flex justify="space-between" align="center">
+                    <Reaction />
+                </Flex>
             </Card>
         </List.Item>
     );
