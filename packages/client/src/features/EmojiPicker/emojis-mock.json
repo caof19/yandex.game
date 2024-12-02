@@ -1,0 +1,182 @@
+{
+    "categories": [
+        {
+            "categoryName": "Smileys & Emotion",
+            "symbol": "😀"
+        },
+        {
+            "categoryName": "Animals & Nature",
+            "symbol": "🐵"
+        },
+        {
+            "categoryName": "Food & Drink",
+            "symbol": "🍇"
+        },
+        {
+            "categoryName": "Travel & Places",
+            "symbol": "🌍"
+        },
+        {
+            "categoryName": "Activities",
+            "symbol": "🎃"
+        },
+        {
+            "categoryName": "Objects",
+            "symbol": "👓"
+        },
+        {
+            "categoryName": "Symbols",
+            "symbol": "🏧"
+        },
+        {
+            "categoryName": "Flags",
+            "symbol": "🏁"
+        }
+    ],
+    "emojis": [
+        {
+            "name": "grinning",
+            "symbol": "😀",
+            "code": "1F600",
+            "category": "Smileys & Emotion"
+        },
+        {
+            "name": "joy",
+            "symbol": "😂",
+            "code": "1F602",
+            "category": "Smileys & Emotion"
+        },
+        {
+            "name": "heart_eyes",
+            "symbol": "😍",
+            "code": "1F60D",
+            "category": "Smileys & Emotion"
+        },
+        {
+            "name": "dog",
+            "symbol": "🐶",
+            "code": "1F436",
+            "category": "Animals & Nature"
+        },
+        {
+            "name": "cat",
+            "symbol": "🐱",
+            "code": "1F431",
+            "category": "Animals & Nature"
+        },
+        {
+            "name": "sunflower",
+            "symbol": "🌻",
+            "code": "1F33B",
+            "category": "Animals & Nature"
+        },
+        {
+            "name": "pizza",
+            "symbol": "🍕",
+            "code": "1F355",
+            "category": "Food & Drink"
+        },
+        {
+            "name": "burger",
+            "symbol": "🍔",
+            "code": "1F354",
+            "category": "Food & Drink"
+        },
+        {
+            "name": "coffee",
+            "symbol": "☕",
+            "code": "2615",
+            "category": "Food & Drink"
+        },
+        {
+            "name": "airplane",
+            "symbol": "✈️",
+            "code": "2708",
+            "category": "Travel & Places"
+        },
+        {
+            "name": "car",
+            "symbol": "🚗",
+            "code": "1F697",
+            "category": "Travel & Places"
+        },
+        {
+            "name": "bicycle",
+            "symbol": "🚲",
+            "code": "1F6B2",
+            "category": "Travel & Places"
+        },
+        {
+            "name": "soccer",
+            "symbol": "⚽",
+            "code": "26BD",
+            "category": "Activities"
+        },
+        {
+            "name": "basketball",
+            "symbol": "🏀",
+            "code": "1F3C0",
+            "category": "Activities"
+        },
+        {
+            "name": "guitar",
+            "symbol": "🎸",
+            "code": "1F3B8",
+            "category": "Activities"
+        },
+        {
+            "name": "laptop",
+            "symbol": "💻",
+            "code": "1F4BB",
+            "category": "Objects"
+        },
+        {
+            "name": "phone",
+            "symbol": "📱",
+            "code": "1F4F1",
+            "category": "Objects"
+        },
+        {
+            "name": "light_bulb",
+            "symbol": "💡",
+            "code": "1F4A1",
+            "category": "Objects"
+        },
+        {
+            "name": "warning",
+            "symbol": "⚠️",
+            "code": "26A0",
+            "category": "Symbols"
+        },
+        {
+            "name": "heart",
+            "symbol": "❤️",
+            "code": "2764",
+            "category": "Symbols"
+        },
+        {
+            "name": "star",
+            "symbol": "⭐",
+            "code": "2B50",
+            "category": "Symbols"
+        },
+        {
+            "name": "flag_us",
+            "symbol": "🇺🇸",
+            "code": "1F1FA-1F1F8",
+            "category": "Flags"
+        },
+        {
+            "name": "flag_fr",
+            "symbol": "🇫🇷",
+            "code": "1F1EB-1F1F7",
+            "category": "Flags"
+        },
+        {
+            "name": "flag_jp",
+            "symbol": "🇯🇵",
+            "code": "1F1EF-1F1F5",
+            "category": "Flags"
+        }
+    ]
+}

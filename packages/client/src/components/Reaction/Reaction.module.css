@@ -1,0 +1,11 @@
+.reactionContainer {
+    position: relative;
+}
+.reactionContainer .addReaction {
+    cursor: pointer;
+}
+.reactionContainer .emojiPickerContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
