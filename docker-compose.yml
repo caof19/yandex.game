@@ -1,4 +1,18 @@
 services:
+    nginx:
+    depends_on:
+        - prakticum-client
+    restart: always
+    container_name: nginx
+    build:
+        context: ./nginx
+        dockerfile: Dockerfile
+    ports:
+        - "80:80"
+        - "443:443"
+    networks:
+        - postgres
+
     client:
         env_file: .env
         container_name: prakticum-client
@@ -68,8 +82,6 @@ volumes:
     pgadmin-data:
     postgres-data:
 
-
 networks:
     awesome:
         driver: bridge
-    
