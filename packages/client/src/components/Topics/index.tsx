@@ -10,6 +10,7 @@ import { TCreateTopicFormField } from "@/pages/Forum";
 import { Button } from "antd";
 import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import { EditOutlined } from "@ant-design/icons";
+import { Reactions, TReaction } from "../Reaction/Reaction";
 
 export type TTopic = {
     id: number;
@@ -18,7 +19,9 @@ export type TTopic = {
     createdAt: string;
     author: string;
     comments: TComment[];
+    reactions: TReaction[];
 };
+
 export type TTopicsProps = {
     topics: TTopic[];
     setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,11 +30,9 @@ export type TTopicProps = {
     topic: TTopic;
     setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 const Topic = (props: TTopicProps) => {
     const [text, setText] = useState(props.topic.text);
     const [title, setTitle] = useState(props.topic.title);
-    console.log(props.topic);
 
     useEffect(() => {
         setText(props.topic.text);
@@ -155,6 +156,13 @@ const Topic = (props: TTopicProps) => {
                         />
                     </>
                 )}
+                <Flex justify="space-between" align="center">
+                    <Reactions
+                        setUpdate={props.setUpdate}
+                        reactions={props.topic.reactions}
+                        topic_id={props.topic.id}
+                    />
+                </Flex>
             </Card>
         </List.Item>
     );

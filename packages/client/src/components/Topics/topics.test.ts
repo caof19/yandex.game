@@ -9,6 +9,7 @@ const topicTestData: TTopic[] = [
         createdAt: "2017-04-01T15:20:04.685Z",
         author: "username651651",
         comments: [],
+        reactions: [],
     },
 ];
 it.skip("Список тем форума рендерится без ошибок", () => {

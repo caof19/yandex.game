@@ -22,7 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-# __snapshots__/
+__snapshots__/
 
 server/*.js
 server/*.d.ts
