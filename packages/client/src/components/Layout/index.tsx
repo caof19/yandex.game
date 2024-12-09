@@ -1,19 +1,48 @@
 import { Space, Typography } from "antd/lib";
 import styles from "./styles.module.css";
 import peachIcon from "@/assets/svg/peach.svg";
-import { useAuth } from "@/service/hook";
+import { useAppSelector, useAuth } from "@/service/hook";
 import { relativeRoutes } from "@/service/routes/routeMap";
 import { Link, Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setTheme } from "@/store/slice/theme";
+import { Button } from "antd/lib";
 
 export const Layout = () => {
+    const dispatch = useDispatch();
+
     const isAuthenticated = useAuth();
+    const { theme } = useAppSelector((state) => state.theme);
+    const isLightTheme = theme === "light";
+
+    const handleChangeThemeButtonClick = () => {
+        const newTheme = isLightTheme ? "dark" : "light";
+
+        dispatch(setTheme(newTheme));
+
+        if (window) {
+            localStorage.setItem("theme", newTheme);
+        }
+    };
+
     return (
         <div className={styles.page}>
             <div className={styles.container}>
                 <div className={styles.content}>
                     <header className={styles.header}>
                         <Space align="center">
-                            <img src={peachIcon} className={styles.logo} />
+                            <div className={styles.wrapperLogo}>
+                                <div>
+                                    <img
+                                        src={peachIcon}
+                                        className={styles.logo}
+                                    />
+                                </div>
+                                <Button onClick={handleChangeThemeButtonClick}>
+                                    Сменить тему на{" "}
+                                    {isLightTheme ? "Dark" : "Light"}
+                                </Button>
+                            </div>
                             <Typography.Title>PeachesFiller</Typography.Title>
                         </Space>
                         <nav className={styles.nav}>

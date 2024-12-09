@@ -4,9 +4,10 @@ import { ConfigProvider, theme } from "antd/lib";
 import { RootErrorBoundary } from "./components";
 import { Router } from "@remix-run/router";
 
-import { store } from "./store";
-import { Provider } from "react-redux";
 import { routers } from "./pages";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setTheme } from "./store/slice/theme";
 
 // TODO: Вынести от сюда
 let browserRouter: Router;
@@ -17,22 +18,36 @@ if (typeof window !== undefined) {
 export const router = browserRouter;
 
 function App() {
-    const isDark = false;
+    const dispatch = useDispatch();
+    const isLightTheme = false;
+
+    useEffect(() => {
+        if (window) {
+            const keyValue = localStorage.getItem("theme");
+
+            if (keyValue) {
+                const theme = keyValue;
+
+                dispatch(setTheme(theme));
+            } else {
+                localStorage.setItem("theme", JSON.stringify("light"));
+                dispatch(setTheme("light"));
+            }
+        }
+    }, []);
 
     return (
-        <Provider store={store}>
-            <RootErrorBoundary>
-                <ConfigProvider
-                    theme={{
-                        algorithm: isDark
-                            ? theme.darkAlgorithm
-                            : theme.compactAlgorithm,
-                    }}
-                >
-                    <RouterProvider router={router} />
-                </ConfigProvider>
-            </RootErrorBoundary>
-        </Provider>
+        <RootErrorBoundary>
+            <ConfigProvider
+                theme={{
+                    algorithm: isLightTheme
+                        ? theme.compactAlgorithm
+                        : theme.darkAlgorithm,
+                }}
+            >
+                <RouterProvider router={router} />
+            </ConfigProvider>
+        </RootErrorBoundary>
     );
 }
 

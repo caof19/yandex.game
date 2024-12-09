@@ -41,6 +41,7 @@ async function createServer() {
             let render: (req: ExpressRequest) => Promise<{
                 html: string;
                 initialState: unknown;
+                styles: { ant: string };
             }>;
             let template: string;
 
@@ -77,15 +78,21 @@ async function createServer() {
             }
 
             // Получаем HTML-строку из JSX
-            const { html: appHtml, initialState } = await render(req);
+            const { html: appHtml, initialState, styles } = await render(req);
 
             // Заменяем комментарий на сгенерированную HTML-строку
-            const html = template.replace(`<!--ssr-outlet-->`, appHtml).replace(
-                `<!--ssr-initial-state-->`,
-                `<script>window.APP_INITIAL_STATE = ${serialize(initialState, {
-                    isJSON: true,
-                })}</script>`,
-            );
+            const html = template
+                .replace(`<!--ssr-outlet-->`, appHtml)
+                .replace(
+                    `<!--ssr-initial-state-->`,
+                    `<script>window.APP_INITIAL_STATE = ${serialize(
+                        initialState,
+                        {
+                            isJSON: true,
+                        },
+                    )}</script>`,
+                )
+                .replace("<!--ssr-styles-ant-->", styles.ant);
 
             // Завершаем запрос и отдаём HTML-страницу
             res.status(200).set({ "Content-Type": "text/html" }).end(html);
