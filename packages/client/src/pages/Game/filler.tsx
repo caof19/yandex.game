@@ -1,5 +1,5 @@
 import { Button, notification } from "antd";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useFillerCanvas from "./canvas/useCanvas";
 import { GameProps } from ".";
 import {
@@ -25,6 +25,19 @@ const WIN_CONDITION = (ROWS * COLS) / 2;
 const playerStart = [ROWS - 1, 0];
 const compStart = [0, COLS - 1];
 
+// TODO: Это потом выносится в утилитарную функцию
+const markFloodFillStartTime = "floodFillStartTime";
+const markFloodFillEndTime = "floodFillEndTime";
+const markFloodFillFullTime = "floodFillFullTime";
+
+const markComputerMoveStartTime = "computerMoveStartTime";
+const markComputerMoveEndTime = "computerMoveEndTime";
+const markComputerMoveFullTime = "computerMoveFullTime";
+
+const markPlayerMoveStartTime = "playerMoveStartTime";
+const markPlayerMoveEndTime = "playerMoveEndTime";
+const markPlayerMoveFullTime = "playerMoveFullTime";
+
 const FillerGame = (props: GameProps) => {
     const { params, setGameState, restartGame } = props;
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -47,6 +60,12 @@ const FillerGame = (props: GameProps) => {
             isPlayer: boolean,
             skipRender?: boolean,
         ) => {
+            performance.clearMarks(markFloodFillStartTime);
+            performance.clearMarks(markFloodFillEndTime);
+            performance.clearMeasures(markFloodFillFullTime);
+
+            performance.mark(markFloodFillStartTime);
+
             const [row, col] = isPlayer ? playerStart : compStart;
             const owner = isPlayer ? "player" : "comp";
             const newGrid = grid.map((x) => x.map((y) => ({ ...y })));
@@ -80,7 +99,25 @@ const FillerGame = (props: GameProps) => {
             if (!skipRender) {
                 setGrid(newGrid);
             }
-            return countGridOwner(newGrid, owner);
+
+            const dataGrid = countGridOwner(newGrid, owner);
+
+            performance.mark(markFloodFillEndTime);
+
+            performance.measure(
+                markFloodFillFullTime,
+                markFloodFillStartTime,
+                markFloodFillEndTime,
+            );
+
+            for (const entry of performance.getEntries()) {
+                console.log(`
+                  Запись "${entry.name}", тип ${entry.entryType}.
+                  Старт в ${entry.startTime}мс, продолжительность ${entry.duration}мс
+                `);
+            }
+
+            return dataGrid;
         },
         [grid],
     );
@@ -93,6 +130,12 @@ const FillerGame = (props: GameProps) => {
     );
 
     const computerMove = () => {
+        performance.clearMarks(markComputerMoveStartTime);
+        performance.clearMarks(markComputerMoveEndTime);
+        performance.clearMeasures(markComputerMoveFullTime);
+
+        performance.mark(markComputerMoveStartTime);
+
         const availableColors = COLORS.filter(
             (color) => color !== computerColor && color !== playerColor,
         );
@@ -116,16 +159,52 @@ const FillerGame = (props: GameProps) => {
         setComputerColor(bestColor);
         setComputerCells(newlyCapturedCells);
         setIsPlayerTurn(true);
+
+        performance.mark(markComputerMoveEndTime);
+
+        performance.measure(
+            markComputerMoveFullTime,
+            markComputerMoveStartTime,
+            markComputerMoveEndTime,
+        );
+
+        for (const entry of performance.getEntries()) {
+            console.log(`
+              Запись "${entry.name}", тип ${entry.entryType}.
+              Старт в ${entry.startTime}мс, продолжительность ${entry.duration}мс
+            `);
+        }
     };
 
     const playerMove = (color: string) => {
         if (!isPlayerTurn || color === computerColor) return;
+
+        performance.clearMarks(markPlayerMoveStartTime);
+        performance.clearMarks(markPlayerMoveEndTime);
+        performance.clearMeasures(markPlayerMoveFullTime);
+
+        performance.mark(markPlayerMoveStartTime);
 
         const newlyCapturedCells = floodFill(playerColor, color, true);
 
         setCurrentColor(color);
         setPlayerCells(newlyCapturedCells);
         setIsPlayerTurn(false);
+
+        performance.mark(markPlayerMoveEndTime);
+
+        performance.measure(
+            markPlayerMoveFullTime,
+            markPlayerMoveStartTime,
+            markPlayerMoveEndTime,
+        );
+
+        for (const entry of performance.getEntries()) {
+            console.log(`
+              Запись "${entry.name}", тип ${entry.entryType}.
+              Старт в ${entry.startTime}мс, продолжительность ${entry.duration}мс
+            `);
+        }
     };
 
     const username = useUsername();
