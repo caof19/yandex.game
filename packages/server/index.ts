@@ -20,22 +20,25 @@ import { themesRouter } from "./routes/themesRouter";
 import { userThemeRouter } from "./routes/userThemeRoutes";
 
 import xssShield from "xss-shield/build/main/lib/xssShield";
+import { reactionRouter } from "./routes/reactionRoutes";
+import { Reaction } from "./models/Reaction.model";
 
-dotenv.config();
+dotenv.config({ path: "../../.env" });
 const app = express();
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(xssShield());
 const port = Number(process.env.SERVER_PORT) || 3001;
-
-sequelize.addModels([Comment, Topic, Reply, Themes, UserTheme]);
-sequelize.sync({ force: true });
+const db = sequelize();
+db.addModels([Comment, Topic, Reply, Reaction, Themes, UserTheme]);
+db.sync({ force: true });
 app.use(getBody);
 app.use(checkAuth);
-app.use("/topics", topicRouter);
-app.use("/comments", commentRouter);
-app.use("/replies", replyRouter);
-app.use("/themes", themesRouter);
-app.use("/user/themes", userThemeRouter);
+app.use("/api/topics", topicRouter);
+app.use("/api/comments", commentRouter);
+app.use("/api/replies", replyRouter);
+app.use("/api/reactions", reactionRouter);
+app.use("/api/themes", themesRouter);
+app.use("/api/user/themes", userThemeRouter);
 
 app.get("/user", (_, res) => {
     res.json({ name: "</script>Степа", secondName: "Степанов" });

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { getQueryParam } from "@/utils/query";
-import { API } from "@/service";
 import { REDIRECT_URI } from "@/service/const";
 import { User } from "@/service/api/user";
 import { message } from "antd";
 import { login } from "@/store/slice/auth";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/service/hook";
+import { YandexApi } from "@/service/api";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -16,11 +16,11 @@ export const Login = () => {
         const code = getQueryParam("code");
 
         if (code) {
-            API.post("/oauth/yandex", {
+            YandexApi.post("/oauth/yandex", {
                 code,
                 redirect_uri: REDIRECT_URI,
             })
-                .then(() => API.get<User>("/auth/user"))
+                .then(() => YandexApi.get<User>("/auth/user"))
                 .then(({ data }) => {
                     message.open({
                         type: "success",

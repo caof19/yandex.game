@@ -8,6 +8,7 @@ import {
     PrimaryKey,
     Table,
 } from "sequelize-typescript";
+import { IReaction, Reaction } from "./Reaction.model";
 
 export interface ITopic {
     id: number;
@@ -15,7 +16,9 @@ export interface ITopic {
     text: string;
     author: string;
     comments: IComment[];
+    reactions: IReaction[];
 }
+
 @Table
 export class Topic extends Model<ITopic> {
     @AutoIncrement
@@ -30,4 +33,6 @@ export class Topic extends Model<ITopic> {
     declare author: string;
     @HasMany(() => Comment)
     declare comments: IComment[];
+    @HasMany(() => Reaction)
+    declare reactions: IReaction[];
 }

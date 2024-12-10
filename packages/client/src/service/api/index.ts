@@ -1,4 +1,5 @@
 import axios from "axios";
-import { config } from "./config";
+import { baseConfig, yandexConfig } from "./config";
 
-export const API = axios.create(config);
+export const YandexApi = axios.create(yandexConfig);
+export const BaseApi = axios.create(baseConfig);
