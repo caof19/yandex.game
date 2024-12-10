@@ -10,10 +10,15 @@ import { checkAuth } from "./middlewares/checkAuth";
 import { Comment } from "./models/Comment.model";
 import { Reply } from "./models/Reply.model";
 import { Topic } from "./models/Topic.model";
+import { UserTheme } from "./models/UserTheme.model";
+import { Themes } from "./models/Themes.model";
 
 import { commentRouter } from "./routes/commentRoutes";
 import { replyRouter } from "./routes/replyRoutes";
 import { topicRouter } from "./routes/topicRoutes";
+import { themesRouter } from "./routes/themesRouter";
+import { userThemeRouter } from "./routes/userThemeRoutes";
+
 import xssShield from "xss-shield/build/main/lib/xssShield";
 import { reactionRouter } from "./routes/reactionRoutes";
 import { Reaction } from "./models/Reaction.model";
@@ -24,7 +29,7 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(xssShield());
 const port = Number(process.env.SERVER_PORT) || 3001;
 const db = sequelize();
-db.addModels([Comment, Topic, Reply, Reaction]);
+db.addModels([Comment, Topic, Reply, Reaction, Themes, UserTheme]);
 db.sync({ force: true });
 app.use(getBody);
 app.use(checkAuth);
@@ -32,6 +37,8 @@ app.use("/api/topics", topicRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/replies", replyRouter);
 app.use("/api/reactions", reactionRouter);
+app.use("/api/themes", themesRouter);
+app.use("/api/user/themes", userThemeRouter);
 
 app.get("/user", (_, res) => {
     res.json({ name: "</script>Степа", secondName: "Степанов" });

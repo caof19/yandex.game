@@ -7,6 +7,7 @@ import {
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./slice/auth";
+import themeSlice from "./slice/theme";
 
 declare global {
     interface Window {
@@ -14,7 +15,7 @@ declare global {
     }
 }
 
-export const reducer = combineReducers({ auth: authSlice });
+export const reducer = combineReducers({ auth: authSlice, theme: themeSlice });
 
 export const store = configureStore({
     reducer,
